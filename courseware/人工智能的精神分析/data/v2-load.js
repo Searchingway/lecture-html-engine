@@ -1,6 +1,6 @@
 (async()=>{
   if(typeof DecompressionStream==='undefined'){
-    document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#ff5a1f">浏览器版本过旧</h1><p>本课件需要支持 DecompressionStream 的新版 Chrome / Edge。</p></main>';
+    document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#d86b45">浏览器版本过旧</h1><p>本课件需要支持 DecompressionStream 的新版 Chrome / Edge。</p></main>';
     return;
   }
   try{
@@ -34,10 +34,16 @@
     delete window.__V2_PARTS__; delete window.__V2_COURSES__; delete window.addV2Course;
     const script=document.createElement('script');
     script.src='../../engine/lecture-engine.js';
-    script.onerror=()=>{document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#ff5a1f">引擎加载失败</h1><p>请确认整个仓库目录已完整下载。</p></main>'};
+    script.onerror=()=>{document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#d86b45">引擎加载失败</h1><p>请确认整个仓库目录已完整下载。</p></main>'};
+    script.onload=()=>{
+      const v3=document.createElement('script');
+      v3.src='v3-enhance.js';
+      v3.onerror=()=>console.error('V3 enhancer failed to load');
+      document.body.appendChild(v3);
+    };
     document.body.appendChild(script);
   }catch(err){
     console.error(err);
-    document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#ff5a1f">课件数据加载失败</h1><pre style="white-space:pre-wrap">'+String(err)+'</pre></main>';
+    document.body.innerHTML='<main style="padding:10vh;font-family:system-ui;background:#111;color:#fff;min-height:100vh"><h1 style="color:#d86b45">课件数据加载失败</h1><pre style="white-space:pre-wrap">'+String(err)+'</pre></main>';
   }
 })();
