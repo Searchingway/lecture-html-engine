@@ -1,93 +1,143 @@
 /*
- * V3 MVP adaptive layout pass · 2026-09-06
- * Principle: content decides layout; templates no longer force empty columns.
+ * V3.2 adaptive layout system · 2026-09-06
+ * Core rule: content decides layout. No empty columns, no orphan terms,
+ * no forced three/four-card grids, and no decorative image slots without a real visual.
  */
 
-/* ---- Generic split fallback ------------------------------------------------ */
-.mvp-text-split-fallback .slide-body,
-.mvp-no-visual.layout-split-left .slide-body,
-.mvp-no-visual.layout-split-right .slide-body{
+/* --------------------------------------------------------------------------
+   0. Reset legacy layout pressure once the runtime auditor classifies a slide
+   -------------------------------------------------------------------------- */
+.mvp-reviewed .point-list{
+  width:100%;
+  max-width:1280px!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+}
+.mvp-reviewed.layout-triad .point-list,
+.mvp-reviewed.layout-quad .point-list,
+.mvp-reviewed.layout-cards .point-list,
+.mvp-reviewed.layout-summary .point-list,
+.mvp-reviewed.layout-compare .point-list,
+.mvp-reviewed.layout-matrix .point-list,
+.mvp-reviewed.layout-timeline .point-list,
+.mvp-reviewed.layout-hook .point-list,
+.mvp-reviewed.layout-question .point-list,
+.mvp-reviewed.layout-map .point-list{
+  grid-template-columns:1fr!important;
+}
+
+/* A split page is only a split page when a real teaching visual exists. */
+.mvp-reviewed.mvp-no-visual.layout-split-left .slide-body,
+.mvp-reviewed.mvp-no-visual.layout-split-right .slide-body,
+.mvp-reviewed.mvp-text-split-fallback .slide-body{
   display:block!important;
   grid-template-columns:none!important;
   gap:0!important;
 }
-.mvp-text-split-fallback .v3-copy,
-.mvp-no-visual.layout-split-left .v3-copy,
-.mvp-no-visual.layout-split-right .v3-copy{display:block!important}
-.mvp-text-split-fallback .point-list,
-.mvp-no-visual.layout-split-left .point-list,
-.mvp-no-visual.layout-split-right .point-list{
+.mvp-reviewed.mvp-no-visual.layout-split-left .point-list,
+.mvp-reviewed.mvp-no-visual.layout-split-right .point-list,
+.mvp-reviewed.mvp-text-split-fallback .point-list{
   grid-column:auto!important;
-  max-width:100%!important;
+  max-width:1280px!important;
 }
 
-/* ---- Runtime-selected column count ---------------------------------------- */
-.mvp-reviewed .point-list{width:100%;max-width:none!important}
-.mvp-reviewed.mvp-cols-1 .point-list{display:grid!important;grid-template-columns:1fr!important}
-.mvp-reviewed.mvp-cols-2 .point-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
-.mvp-reviewed.mvp-cols-3 .point-list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
-.mvp-reviewed.mvp-cols-4 .point-list{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
-.mvp-reviewed.mvp-cols-3 .point,
-.mvp-reviewed.mvp-cols-4 .point{border-left:0!important;border-top:4px solid var(--orange)!important;padding:18px!important}
-.mvp-reviewed.mvp-cols-3 .v3-point,
-.mvp-reviewed.mvp-cols-4 .v3-point{display:flex!important;flex-direction:column;gap:10px!important}
-.mvp-reviewed.mvp-cols-3 .v3-point-badge,
-.mvp-reviewed.mvp-cols-4 .v3-point-badge{align-self:flex-start;margin-top:0}
+/* --------------------------------------------------------------------------
+   1. Runtime-selected layout grammars
+   -------------------------------------------------------------------------- */
+.mvp-layout-stack .point-list{grid-template-columns:1fr!important}
+.mvp-layout-pair .point-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;max-width:none!important}
+.mvp-layout-grid3 .point-list{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;max-width:none!important}
+.mvp-layout-grid4 .point-list{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;max-width:none!important}
 
-/* Visual pages keep a real two-part composition; only real SVG/rotator qualifies. */
-.mvp-has-visual .v3-visual-layout{display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(400px,.95fr)!important;gap:42px!important;align-items:center}
-.mvp-has-visual .v3-copy .point-list{grid-template-columns:1fr!important}
-.mvp-has-visual .v3-visual{min-height:280px;display:grid;align-items:center}
+/* Pair/grid pages are visually parallel, not fake numbered steps. */
+.mvp-layout-pair .point,
+.mvp-layout-grid3 .point,
+.mvp-layout-grid4 .point{
+  border-left:0!important;
+  border-top:4px solid var(--orange)!important;
+  background:rgba(255,255,255,.34)!important;
+  box-shadow:none!important;
+  padding:20px 20px!important;
+  min-height:0!important;
+}
+.dark.mvp-layout-pair .point,
+.dark.mvp-layout-grid3 .point,
+.dark.mvp-layout-grid4 .point,
+.v3-theme-core.mvp-layout-pair .point,
+.v3-theme-core.mvp-layout-grid3 .point,
+.v3-theme-core.mvp-layout-grid4 .point,
+.v3-theme-case.mvp-layout-pair .point,
+.v3-theme-case.mvp-layout-grid3 .point,
+.v3-theme-case.mvp-layout-grid4 .point{background:rgba(255,255,255,.055)!important}
 
-/* ---- Density tuning ------------------------------------------------------- */
-.mvp-density-sparse:not(.layout-chapter):not(.layout-case):not(.layout-formula-step) .slide-body{
+.mvp-layout-grid3 .v3-point,
+.mvp-layout-grid4 .v3-point{
   display:flex!important;
   flex-direction:column;
-  justify-content:flex-start;
-  padding-top:8px;
+  gap:10px!important;
 }
-.mvp-density-sparse .point-list{margin-top:24px!important;max-width:1320px!important}
-.mvp-density-sparse.mvp-cols-1 .point{
-  min-height:150px;
-  display:grid;
-  align-content:center;
-  font-size:30px!important;
-  line-height:1.48!important;
-  padding:26px 28px!important;
-  border-left:0!important;
-  border-top:5px solid var(--orange)!important;
-  background:rgba(255,255,255,.42)!important;
-}
-.mvp-density-sparse.mvp-cols-2 .point{
-  min-height:176px;
-  font-size:27px!important;
-  line-height:1.48!important;
-  padding:24px 26px!important;
-  border-left:0!important;
-  border-top:5px solid var(--orange)!important;
-  background:rgba(255,255,255,.38)!important;
-}
-.dark.mvp-density-sparse .point,
-.v3-theme-core.mvp-density-sparse .point,
-.v3-theme-case.mvp-density-sparse .point{background:rgba(255,255,255,.065)!important}
-.v3-theme-warning.mvp-density-sparse .point{background:rgba(255,255,255,.16)!important}
+.mvp-layout-grid3 .v3-point-badge,
+.mvp-layout-grid4 .v3-point-badge{align-self:flex-start;margin-top:0}
 
+/* --------------------------------------------------------------------------
+   2. Sparse pages: deliberate thesis composition, not unfinished emptiness
+   -------------------------------------------------------------------------- */
+.mvp-density-sparse:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.mvp-has-visual) .slide-body{
+  display:flex!important;
+  flex-direction:column;
+  justify-content:center;
+  min-height:0;
+  padding:6px 0 36px;
+}
+.mvp-density-sparse:not(.mvp-has-visual) .slide-title{
+  max-width:1360px!important;
+  margin-bottom:24px!important;
+}
+.mvp-density-sparse:not(.mvp-has-visual) .point-list{
+  max-width:1260px!important;
+  margin:0!important;
+  gap:16px!important;
+}
+.mvp-density-sparse.mvp-layout-stack:not(.mvp-has-visual) .point{
+  font-size:29px!important;
+  line-height:1.5!important;
+  padding:22px 26px!important;
+  min-height:0!important;
+  border-left:5px solid var(--orange)!important;
+  border-top:0!important;
+  background:rgba(255,255,255,.28)!important;
+}
+.dark.mvp-density-sparse.mvp-layout-stack .point,
+.v3-theme-core.mvp-density-sparse.mvp-layout-stack .point,
+.v3-theme-case.mvp-density-sparse.mvp-layout-stack .point{background:rgba(255,255,255,.055)!important}
+.v3-theme-warning.mvp-density-sparse.mvp-layout-stack .point{background:rgba(255,255,255,.14)!important}
+
+/* Sparse pages never need a lonely glossary chip floating at the bottom. */
+.mvp-density-sparse .terms{display:none!important}
+
+/* --------------------------------------------------------------------------
+   3. Normal and dense text pages
+   -------------------------------------------------------------------------- */
 .mvp-density-light .point{font-size:27px!important;line-height:1.48!important}
 .mvp-density-normal .point{font-size:26px!important;line-height:1.46!important}
-.mvp-density-dense .point-list{grid-template-columns:1fr!important;gap:8px!important}
-.mvp-density-dense .point{font-size:24px!important;line-height:1.42!important;padding-top:10px!important;padding-bottom:10px!important}
-.mvp-long-blocks .point-list{grid-template-columns:1fr!important}
+.mvp-density-dense .point-list{grid-template-columns:1fr!important;gap:8px!important;max-width:1320px!important}
+.mvp-density-dense .point{font-size:24px!important;line-height:1.42!important;padding:10px 18px!important}
+.mvp-long-blocks .point-list{grid-template-columns:1fr!important;max-width:1320px!important}
 
-/* Overflow is solved by reducing furniture first, not by microscopic text. */
-.mvp-compact .slide-shell{gap:12px}
-.mvp-compact .slide-title{margin-bottom:12px!important}
-.mvp-compact .point-list{gap:7px!important}
-.mvp-compact .point{padding-top:9px!important;padding-bottom:9px!important;font-size:23.5px!important;line-height:1.39!important}
-.mvp-compact .terms{display:none!important}
-.mvp-very-compact .slide-title{font-size:44px!important;line-height:1.05!important;margin-bottom:8px!important}
-.mvp-very-compact .point{font-size:22.5px!important;line-height:1.36!important;padding-top:7px!important;padding-bottom:7px!important}
+/* Reduce furniture before reducing readable type. */
+.slide-shell.mvp-compact{gap:12px!important;padding-top:48px;padding-bottom:44px}
+.slide-shell.mvp-compact .slide-title{margin-bottom:12px!important}
+.slide-shell.mvp-compact .point-list{gap:7px!important}
+.slide-shell.mvp-compact .point{padding-top:9px!important;padding-bottom:9px!important;font-size:23.5px!important;line-height:1.39!important}
+.slide-shell.mvp-compact .terms{display:none!important}
+.slide-shell.mvp-very-compact .slide-title{font-size:45px!important;line-height:1.06!important;margin-bottom:8px!important}
+.slide-shell.mvp-very-compact .point{font-size:22.5px!important;line-height:1.36!important;padding-top:7px!important;padding-bottom:7px!important}
+.slide-shell.mvp-very-compact .source{font-size:12px!important}
 
-/* ---- Tags / terms --------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   4. Terms: attached glossary, never an independent composition block
+   -------------------------------------------------------------------------- */
 .terms.mvp-terms-hidden{display:none!important}
 .terms.mvp-terms-inline{
   position:static!important;
@@ -95,12 +145,13 @@
   align-items:center!important;
   flex-wrap:wrap!important;
   gap:7px!important;
-  margin:16px 0 0!important;
+  margin:14px 0 0!important;
   padding:0!important;
   border:0!important;
 }
 .terms.mvp-terms-inline::before{display:none!important;content:none!important}
 .terms.mvp-terms-inline .term{
+  position:static!important;
   border:1px solid var(--line)!important;
   padding:6px 9px!important;
   font:700 11px/1.1 Consolas,monospace!important;
@@ -110,40 +161,61 @@
 .dark .terms.mvp-terms-inline .term,
 .v3-theme-core .terms.mvp-terms-inline .term,
 .v3-theme-case .terms.mvp-terms-inline .term{color:#c9c4ba!important;border-color:rgba(255,255,255,.2)!important}
-
-/* Stop the previous sparse-page treatment from turning one term into a giant orphan word. */
-.mvp-reviewed .terms .term{position:static!important}
 .mvp-reviewed .terms::before{display:none!important}
 
-/* ---- Reveal behavior ------------------------------------------------------ */
-.mvp-show-all .point{opacity:1!important;transform:none!important}
+/* --------------------------------------------------------------------------
+   5. Reveal: short pages show the complete thought immediately
+   -------------------------------------------------------------------------- */
+.mvp-show-all .point{opacity:1!important;transform:none!important;filter:none!important}
 
-/* ---- Special layout consistency ------------------------------------------ */
-.mvp-reviewed.layout-triad.mvp-cols-1 .point,
-.mvp-reviewed.layout-summary.mvp-cols-1 .point,
-.mvp-reviewed.layout-cards.mvp-cols-1 .point,
-.mvp-reviewed.layout-quad.mvp-cols-1 .point,
-.mvp-reviewed.layout-compare.mvp-cols-1 .point,
-.mvp-reviewed.layout-matrix.mvp-cols-1 .point{
-  min-height:0!important;
-  background:transparent!important;
-  border-left:4px solid var(--orange)!important;
-  border-top:0!important;
-  padding:12px 18px 12px 22px!important;
+/* --------------------------------------------------------------------------
+   6. Real teaching visuals
+   -------------------------------------------------------------------------- */
+.mvp-has-visual .v3-visual-layout,
+.mvp-has-visual .mvp-visual-layout{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.06fr) minmax(410px,.94fr)!important;
+  gap:42px!important;
+  align-items:center!important;
 }
-.mvp-reviewed.layout-timeline.mvp-cols-1 .point-list,
-.mvp-reviewed.layout-timeline.mvp-cols-2 .point-list{border-top:4px solid var(--orange);padding-top:18px}
-.mvp-reviewed.layout-case.mvp-cols-1 .point-list{grid-template-columns:1fr!important}
-.mvp-reviewed.layout-case.mvp-cols-2 .point-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.mvp-has-visual .v3-copy,
+.mvp-has-visual .mvp-copy{min-width:0}
+.mvp-has-visual .v3-copy .point-list,
+.mvp-has-visual .mvp-copy .point-list{grid-template-columns:1fr!important;max-width:100%!important}
+.mvp-has-visual .v3-visual,
+.mvp-has-visual .mvp-visual{
+  min-height:300px;
+  display:grid;
+  align-items:center;
+  border-left:1px solid rgba(24,25,30,.14);
+  padding-left:30px;
+}
+.dark.mvp-has-visual .v3-visual,
+.dark.mvp-has-visual .mvp-visual,
+.v3-theme-core.mvp-has-visual .v3-visual,
+.v3-theme-core.mvp-has-visual .mvp-visual{border-left-color:rgba(255,255,255,.16)}
+.mvp-has-visual .terms{display:none!important}
+.mvp-visual svg{display:block;width:100%;height:auto;max-height:500px;overflow:visible}
+.mvp-visual .svg-line{stroke:var(--orange);stroke-width:4;fill:none}
+.mvp-visual .svg-soft{stroke:var(--purple);stroke-width:3;fill:none}
+.mvp-visual .svg-node{fill:rgba(216,107,69,.08);stroke:var(--orange);stroke-width:2}
+.mvp-visual .svg-label{font:700 21px "Microsoft YaHei UI",sans-serif;fill:currentColor}
+.mvp-visual .svg-small{font:600 15px "Microsoft YaHei UI",sans-serif;fill:var(--muted)}
+.dark .mvp-visual .svg-small,.v3-theme-core .mvp-visual .svg-small{fill:#bfb9b0}
 
-/* A truly empty text body should read as a deliberate transition, not a broken template. */
+/* --------------------------------------------------------------------------
+   7. Special layouts remain special, but still obey content count
+   -------------------------------------------------------------------------- */
+.mvp-reviewed.layout-case.mvp-layout-stack .point-list{grid-template-columns:1fr!important}
+.mvp-reviewed.layout-case.mvp-layout-pair .point-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.mvp-reviewed.layout-timeline.mvp-layout-stack .point-list,
+.mvp-reviewed.layout-timeline.mvp-layout-pair .point-list{border-top:0!important;padding-top:0!important}
+.mvp-reviewed.layout-formula-step .point-list{max-width:1040px!important}
+.mvp-reviewed.layout-formula-step .formula{max-width:980px}
+
+/* A true text-only transition should look intentional. */
 .mvp-empty-body .slide-body{display:grid!important;align-content:center!important}
-.mvp-empty-body .slide-title{max-width:1150px}
+.mvp-empty-body .slide-title{max-width:1180px!important}
 
-/* Dark and light pages share the same spacing system. */
-.mvp-reviewed.dark .point,
-.mvp-reviewed.v3-theme-core .point,
-.mvp-reviewed.v3-theme-case .point{color:inherit}
-
-/* Preserve top area for the browser's native fullscreen notice and keep authoring tools to the side. */
+/* Browser fullscreen notice belongs at the top; authoring tools stay on the side. */
 #lectureView:fullscreen .ink-toolbar{top:50%;right:14px;left:auto;transform:translateY(-50%)}
