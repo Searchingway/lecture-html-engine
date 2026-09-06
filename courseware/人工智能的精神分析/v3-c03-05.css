@@ -1,0 +1,82 @@
+/* V3.3 fine-layout pass for courses 03–05 only. */
+.fine-course{--fine-accent:var(--orange);--fine-soft:rgba(216,107,69,.12)}
+.fine-course .slide-body{position:relative}
+.fine-course .slide-title{max-width:1280px!important}
+.fine-course .terms{display:none!important}
+.fine-course .point{box-shadow:none!important}
+.fine-course .fine-kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;color:var(--fine-accent);font:900 12px/1 Consolas,monospace;letter-spacing:.15em}
+.fine-course .fine-kicker:before{content:"";width:28px;height:3px;background:currentColor}
+.fine-course .fine-visual-layout{display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(410px,.92fr)!important;gap:46px!important;align-items:center!important}
+.fine-course .fine-copy{min-width:0}
+.fine-course .fine-visual{min-width:0;min-height:340px;display:grid;place-items:center;padding-left:26px;border-left:1px solid rgba(24,25,30,.14)}
+.fine-course.fine-dark .fine-visual{border-color:rgba(255,255,255,.16)}
+.fine-course .fine-visual svg{display:block;width:100%;height:auto;max-height:500px;overflow:visible}
+.fine-course .fine-visual .f-line{stroke:var(--fine-accent);stroke-width:4;fill:none}
+.fine-course .fine-visual .f-soft{stroke:var(--purple);stroke-width:3;fill:none}
+.fine-course .fine-visual .f-node{fill:var(--fine-soft);stroke:var(--fine-accent);stroke-width:2}
+.fine-course .fine-visual .f-label{font:800 21px "Microsoft YaHei UI",sans-serif;fill:currentColor}
+.fine-course .fine-visual .f-small{font:600 15px "Microsoft YaHei UI",sans-serif;fill:var(--muted)}
+.fine-course.fine-dark .fine-visual .f-small{fill:#bdb8af}
+
+/* deliberate color rhythm */
+.fine-course.fine-dark{background:#12141a!important;color:#f6f1e8!important}
+.fine-course.fine-dark .slide-type,.fine-course.fine-dark .source,.fine-course.fine-dark .page-code{color:#aaa59d!important}
+.fine-course.fine-dark .v3-point-text{color:#f2ede5}
+.fine-course.fine-paper{background:#f2eee6!important;color:#18191e!important}
+.fine-course.fine-warm{background:#e8c8b6!important;color:#19191d!important}
+.fine-course.fine-warm .slide-course,.fine-course.fine-warm .v3-point-badge{color:#824126!important}
+
+/* chapter posters get topic-specific geometry */
+.fine-course.layout-chapter .chapter-stripe{opacity:.55!important;width:300px!important}
+.fine-course.layout-chapter:after{content:"";position:absolute;left:54%;top:17%;width:330px;height:330px;border:1px solid rgba(255,255,255,.08);transform:rotate(45deg);pointer-events:none}
+.fine-c03-s01.layout-chapter:after{border-radius:50%;transform:none;box-shadow:0 0 0 42px rgba(103,86,168,.06),0 0 0 84px rgba(216,107,69,.05)}
+.fine-c04-s01.layout-chapter:after{clip-path:polygon(0 0,100% 0,64% 100%,24% 100%);background:linear-gradient(135deg,rgba(216,107,69,.06),transparent)}
+.fine-c05-s01.layout-chapter:after{border-radius:50%;border-style:dashed;box-shadow:0 0 0 70px rgba(255,255,255,.025)}
+
+/* C03 extimacy */
+.fine-c03-s02 .fine-visual-layout{grid-template-columns:minmax(0,.92fr) minmax(520px,1.08fr)!important}
+.fine-c03-s03 .slide-body{display:grid!important;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center}
+.fine-c03-s03 .point-list{grid-column:1!important;display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+.fine-c03-s03 .point:first-child{font-size:32px!important;line-height:1.42!important;border-left:0!important;border-top:5px solid var(--orange)!important;padding:24px 26px!important;background:rgba(216,107,69,.08)!important}
+.fine-c03-s03 .point:nth-child(2){font-size:24px!important;padding:12px 0!important;border:0!important}
+.fine-c03-s03:after{content:"EXTIMACY";position:absolute;right:72px;bottom:120px;font:900 74px/.9 Consolas,monospace;color:rgba(103,86,168,.13);letter-spacing:-.06em}
+.fine-c03-s04 .fine-visual-layout,.fine-c03-s06 .fine-visual-layout{grid-template-columns:1fr 1fr!important}
+.fine-c03-s05 .point-list{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:16px!important;max-width:none!important}
+.fine-c03-s05 .point{min-height:190px!important;border:1px solid rgba(24,25,30,.16)!important;border-top:5px solid var(--orange)!important;padding:22px!important;background:rgba(255,255,255,.24)!important}
+.fine-c03-s07 .point-list,.fine-c04-s08 .point-list,.fine-c05-s09 .point-list{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:18px!important;max-width:none!important}
+.fine-c03-s07 .point,.fine-c04-s08 .point,.fine-c05-s09 .point{min-height:170px!important;padding:24px 22px!important;border:0!important;border-top:5px solid var(--orange)!important;background:rgba(255,255,255,.06)!important}
+.fine-c03-s08 .slide-body,.fine-c04-s09 .slide-body,.fine-c05-s10 .slide-body{display:grid!important;align-content:center!important;min-height:0}
+.fine-c03-s08 .slide-title,.fine-c04-s09 .slide-title,.fine-c05-s10 .slide-title{font-size:74px!important;max-width:1180px!important}
+.fine-c03-s08 .point-list,.fine-c04-s09 .point-list,.fine-c05-s10 .point-list{max-width:980px!important}
+.fine-c03-s08:after,.fine-c04-s09:after,.fine-c05-s10:after{content:"→";position:absolute;right:100px;bottom:105px;font:300 210px/1 Arial;color:rgba(216,107,69,.16)}
+
+/* C04 failure / error */
+.fine-c04-s02 .fine-visual-layout,.fine-c04-s03 .fine-visual-layout,.fine-c04-s04 .fine-visual-layout,.fine-c04-s05 .fine-visual-layout,.fine-c04-s06 .fine-visual-layout{grid-template-columns:minmax(0,1fr) minmax(440px,1fr)!important}
+.fine-c04-s03 .point-list{display:grid!important;grid-template-columns:1fr!important}
+.fine-c04-s04 .point:first-child{font-size:30px!important;border-left:0!important;border-top:5px solid #2f241d!important;background:rgba(255,255,255,.16)!important}
+.fine-c04-s05 .fine-visual{border-left:0;border-right:1px solid rgba(255,255,255,.16);padding:0 28px 0 0;order:-1}
+.fine-c04-s05 .fine-visual-layout{grid-template-columns:minmax(430px,.88fr) minmax(0,1.12fr)!important}
+.fine-c04-s06 .point-list{max-width:760px!important}
+.fine-c04-s07 .slide-title{font-size:84px!important;color:#34231d!important}
+.fine-c04-s07 .point-list{max-width:1180px!important}
+.fine-c04-s07 .point{font-size:31px!important;border:0!important;background:rgba(255,255,255,.15)!important;padding:22px 28px!important}
+.fine-c04-s07:after{content:"≠";position:absolute;right:115px;top:270px;font:900 230px/1 Georgia,serif;color:rgba(63,42,32,.13)}
+
+/* C05 uncomputability */
+.fine-c05-s02 .fine-visual-layout,.fine-c05-s03 .fine-visual-layout,.fine-c05-s04 .fine-visual-layout,.fine-c05-s05 .fine-visual-layout,.fine-c05-s07 .fine-visual-layout,.fine-c05-s08 .fine-visual-layout{grid-template-columns:minmax(0,1.02fr) minmax(440px,.98fr)!important}
+.fine-c05-s03 .fine-visual{background:rgba(255,255,255,.025);padding:28px;border:1px solid rgba(255,255,255,.12)}
+.fine-c05-s04 .fine-visual{border-left:0;background:rgba(216,107,69,.06);padding:22px}
+.fine-c05-s05 .fine-visual{border-left-color:rgba(255,255,255,.16)}
+.fine-c05-s06 .point-list{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:0!important;max-width:none!important;border-top:0!important;padding-top:0!important;position:relative}
+.fine-c05-s06 .point{min-height:230px!important;border:0!important;border-top:5px solid var(--orange)!important;background:rgba(255,255,255,.26)!important;padding:56px 22px 22px!important;position:relative}
+.fine-c05-s06 .point:before{display:block!important;position:absolute;left:20px;top:18px;color:var(--orange);font:900 18px Consolas,monospace}
+.fine-c05-s06 .point:nth-child(1):before{content:"01 · 看见"}
+.fine-c05-s06 .point:nth-child(2):before{content:"02 · 理解"}
+.fine-c05-s06 .point:nth-child(3):before{content:"03 · 断定"}
+.fine-c05-s07 .fine-visual-layout{grid-template-columns:minmax(440px,.92fr) minmax(0,1.08fr)!important}
+.fine-c05-s07 .fine-visual{order:-1;border-left:0;border-right:1px solid rgba(255,255,255,.16);padding:0 30px 0 0}
+.fine-c05-s08 .point:first-child{font-size:29px!important}
+
+/* keep reveal readable on these hand-composed pages */
+.fine-course [data-step].unrevealed{opacity:.28!important}
+.fine-course.fine-summary [data-step].unrevealed{opacity:.5!important}
