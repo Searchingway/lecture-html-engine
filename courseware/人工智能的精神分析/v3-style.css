@@ -1,0 +1,219 @@
+:root{
+  --orange:#D86B45;
+  --orange2:#E58A68;
+  --purple:#6756A8;
+  --lime:#AFCB69;
+  --ink:#18191E;
+  --paper:#F2EEE6;
+  --muted:#625E57;
+  --line:rgba(24,25,30,.16);
+  --charcoal:#111318;
+  --graphite:#1A1C22;
+  --soft-orange:#E9B29D;
+  --shadow:0 20px 70px rgba(8,9,12,.24);
+}
+
+/* V3: EVA chapter posters + editorial body pages */
+#app{background:radial-gradient(circle at 82% 12%,#3a2924 0,#15161b 38%,#0b0c10 76%)}
+.topline{height:3px;background:linear-gradient(90deg,var(--orange) 0 64%,var(--purple) 64% 82%,var(--lime) 82%)}
+.grain{opacity:.11}
+.chrome-btn{box-shadow:3px 3px 0 rgba(216,107,69,.18)}
+.primary{background:var(--orange);box-shadow:6px 6px 0 var(--purple)}
+
+/* Home: grouped course architecture */
+#homeView{padding-top:48px}
+.home-head{margin-bottom:34px}
+.home-title{letter-spacing:-.055em}
+.home-meta{border-left-color:var(--orange)}
+.course-grid.v3-grouped{display:block;max-width:1500px}
+.v3-course-group{margin:26px 0 38px}
+.v3-group-head{display:flex;align-items:end;justify-content:space-between;gap:20px;border-bottom:1px solid rgba(255,255,255,.16);padding:0 2px 12px;margin-bottom:12px}
+.v3-group-head b{font-size:25px;letter-spacing:-.02em}
+.v3-group-head span{color:#a9a59d;font:700 12px Consolas,monospace;letter-spacing:.08em}
+.v3-group-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.course-card{min-height:150px;padding:17px 18px 15px}
+.course-card:before{font-size:74px;top:-13px;color:rgba(216,107,69,.11)}
+.course-card h2{font-size:22px;margin:22px 0 8px}
+.card-hook{font-size:13px;line-height:1.45;min-height:38px}
+.card-foot{font-size:11px}
+.tag{padding:6px 10px;font-size:11px}
+
+/* Stage and typography */
+.stage{background:var(--paper)}
+.slide-shell{padding:54px 74px 48px 80px;gap:18px}
+.slide-shell.light{background:var(--paper);color:var(--ink)}
+.slide-shell.dark{background:var(--charcoal);color:#fff}
+.slide-shell.orange{background:#D98968;color:#17181d}
+.slide-shell.v3-theme-case{background:var(--graphite);color:#f6f1e8}
+.slide-shell.v3-theme-warning{background:#D98968;color:#17181d}
+.slide-shell.v3-theme-core{background:var(--charcoal);color:#fff}
+.slide-header{align-items:center}
+.slide-course{color:var(--orange);font-size:13px;letter-spacing:.13em}
+.slide-course:before{width:38px;height:7px}
+.slide-type{border:0;padding:0;font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.dark .slide-type,.v3-theme-case .slide-type,.v3-theme-core .slide-type{color:#bdb8af}
+.slide-title{font-size:66px;line-height:1.04;letter-spacing:-.045em;margin:0 0 18px;font-weight:800;max-width:1370px;text-wrap:balance}
+.slide-title.v3-title-short{font-size:78px}
+.slide-title.v3-title-medium{font-size:66px}
+.slide-title.v3-title-long{font-size:54px;line-height:1.08}
+.slide-title.v3-title-xlong{font-size:47px;line-height:1.11}
+.slide-deck{font-size:21px;line-height:1.55;max-width:1080px;margin:0 0 22px;color:var(--muted)}
+.v3-hide-deck{display:none!important}
+.dark .slide-deck,.v3-theme-case .slide-deck,.v3-theme-core .slide-deck{color:#d3cec5}
+
+/* Information-rich body: hierarchy rather than boxes */
+.point-list{gap:10px;max-width:1260px}
+.point{font-size:27px;line-height:1.48;padding:12px 18px 12px 22px;border-left:4px solid rgba(216,107,69,.75);background:transparent;box-shadow:none;font-weight:450}
+.point:before{display:none}
+.point-list.v3-numbered .point{padding-left:64px}
+.point-list.v3-numbered .point:before{display:block;left:18px;top:16px;color:var(--orange);font-size:16px}
+.dark .point,.v3-theme-case .point,.v3-theme-core .point{background:transparent}
+.orange .point,.v3-theme-warning .point{background:rgba(255,255,255,.14);border-color:#292018}
+[data-step].unrevealed{opacity:.23;transform:translateY(3px);filter:none}
+
+/* Per-block source identity */
+.v3-point{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:start;border-left:0;padding-left:0}
+.v3-point-badge{display:inline-flex;justify-content:center;align-items:center;min-height:28px;padding:5px 8px;border-radius:2px;font:800 11px/1 Consolas,monospace;letter-spacing:.08em;margin-top:5px;border:1px solid currentColor}
+.v3-point-text{display:block;min-width:0}
+.v3-badge-book{color:var(--orange)}
+.v3-badge-explain{color:var(--purple)}
+.v3-badge-extension{color:#748C42}
+.dark .v3-badge-explain,.v3-theme-case .v3-badge-explain,.v3-theme-core .v3-badge-explain{color:#A899E7}
+.dark .v3-badge-extension,.v3-theme-case .v3-badge-extension,.v3-theme-core .v3-badge-extension{color:#C2D88A}
+
+/* Terms only when concept is first/formally introduced */
+.terms{margin-top:15px;gap:7px}
+.term{padding:6px 9px;font-size:11px;border-color:var(--line);color:var(--muted)}
+.dark .term,.v3-theme-case .term,.v3-theme-core .term{color:#c9c4ba;border-color:rgba(255,255,255,.2)}
+.terms.v3-terms-hidden{display:none}
+
+/* Sources and page code */
+.slide-footer{font-size:13px;align-items:end}
+.source{font-size:14px;line-height:1.35;max-width:1180px;color:#777169}
+.dark .source,.v3-theme-case .source,.v3-theme-core .source{color:#aaa59c}
+.page-code{font-size:16px;color:var(--muted)}
+.dark .page-code,.v3-theme-case .page-code,.v3-theme-core .page-code{color:#c4beb5}
+
+/* Chapter posters: remove ordinary lecture furniture */
+.layout-chapter{background:var(--charcoal)!important;color:#fff!important;padding:72px 84px 64px}
+.layout-chapter .slide-header{position:relative;z-index:4}
+.layout-chapter .slide-type{display:none}
+.layout-chapter .slide-body{display:flex;flex-direction:column;justify-content:center;min-height:0;padding-right:300px}
+.layout-chapter .slide-title{font-size:98px!important;line-height:.98;max-width:1040px;margin-bottom:28px;color:#fff}
+.layout-chapter .point-list,.layout-chapter .terms,.layout-chapter .source{display:none!important}
+.layout-chapter .slide-footer{grid-template-columns:1fr auto}
+.layout-chapter .page-code{color:#918b82}
+.layout-chapter .chapter-hook{max-width:930px;font-size:30px;line-height:1.42;color:#d7d1c7;margin:0}
+.layout-chapter .chapter-poster-number{position:absolute;right:72px;top:115px;font:900 245px/.78 Consolas,monospace;color:rgba(216,107,69,.13);letter-spacing:-.08em;z-index:1}
+.layout-chapter .chapter-stripe{position:absolute;right:0;top:0;width:220px;height:100%;background:linear-gradient(162deg,transparent 0 34%,rgba(216,107,69,.96) 34% 45%,transparent 45% 100%);opacity:.82;z-index:0}
+.layout-chapter .chapter-code{margin-top:24px;color:var(--orange);font:800 13px Consolas,monospace;letter-spacing:.14em}
+.layout-chapter .ornament{display:block;right:130px;bottom:70px;opacity:.12}
+
+/* Layout grammars: flexible, not fake three-column variety */
+.layout-hook .point-list,.layout-question .point-list{display:grid;grid-template-columns:1fr;max-width:1240px}
+.layout-question .slide-title,.layout-hook .slide-title{max-width:1320px}
+.layout-triad .point-list,.layout-summary .point-list,.layout-cards .point-list{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:18px}
+.layout-triad .point,.layout-summary .point,.layout-cards .point{font-size:24px;padding:20px 18px;min-height:150px;border-top:5px solid var(--orange);border-left:0;background:rgba(255,255,255,.28)}
+.dark.layout-triad .point,.dark.layout-summary .point,.dark.layout-cards .point{background:rgba(255,255,255,.05)}
+.layout-quad .point-list,.layout-matrix .point-list{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:18px}
+.layout-compare .point-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.layout-split-left .slide-body,.layout-split-right .slide-body{grid-template-columns:minmax(0,1.2fr) minmax(380px,.8fr);gap:54px}
+.layout-split-right .slide-body{grid-template-columns:minmax(380px,.8fr) minmax(0,1.2fr)}
+.layout-split-left.v3-split-balanced .slide-body,.layout-split-right.v3-split-balanced .slide-body{grid-template-columns:1fr 1fr}
+.layout-timeline .point-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:4px solid var(--orange);padding-top:20px}
+.layout-process .point{border-left:0;border-top:5px solid var(--orange)}
+.layout-diagram .point-list{max-width:1020px}
+.layout-formula-step .slide-title{font-size:55px}
+.layout-case .slide-title{font-family:"Microsoft YaHei UI","PingFang SC",sans-serif;font-weight:800}
+.layout-case .slide-body:after{display:none}
+.layout-case .case-kicker{display:inline-block;margin-bottom:14px;color:var(--orange);font:900 15px Consolas,monospace;letter-spacing:.16em}
+.layout-case .point-list{display:grid;grid-template-columns:1.05fr .95fr;max-width:none;gap:20px}
+.layout-case .point{border:1px solid rgba(255,255,255,.15);padding:48px 22px 22px;position:relative;background:rgba(255,255,255,.035);font-size:24px}
+.layout-case .point:after{position:absolute;left:21px;top:18px;font:900 12px Consolas,monospace;letter-spacing:.1em;color:var(--orange)}
+.layout-case .point:nth-child(1):after{content:"发生了什么？"}
+.layout-case .point:nth-child(2):after{content:"它帮我们理解什么？"}
+.layout-case .point:nth-child(n+3){grid-column:1/-1;min-height:auto;padding-top:42px}
+.layout-case .point:nth-child(n+3):after{content:"与原书的连接"}
+
+/* Formula pages: formula is the visual center */
+.formula{font-family:"Cambria Math","STIX Two Math","STIXGeneral","Times New Roman",serif;font-size:48px;line-height:1.38;padding:30px 34px;border:1px solid currentColor;box-shadow:10px 10px 0 var(--orange);margin:8px 0 22px}
+.layout-formula-step .formula{font-size:58px;min-width:54%;max-width:900px}
+.layout-formula-step .point-list{max-width:900px}
+
+/* Meaningful SVG teaching visuals */
+.v3-visual-layout{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(420px,.9fr);gap:48px;align-items:center}
+.v3-copy{min-width:0}
+.v3-visual{min-width:0;align-self:center;border-left:1px solid rgba(24,25,30,.14);padding-left:34px}
+.dark .v3-visual,.v3-theme-case .v3-visual,.v3-theme-core .v3-visual{border-color:rgba(255,255,255,.16)}
+.v3-visual svg{display:block;width:100%;height:auto;max-height:510px;overflow:visible}
+.v3-visual .svg-line{stroke:var(--orange);stroke-width:5;fill:none}
+.v3-visual .svg-soft{stroke:var(--purple);stroke-width:4;fill:none}
+.v3-visual .svg-node{fill:rgba(216,107,69,.1);stroke:var(--orange);stroke-width:2}
+.dark .v3-visual .svg-node,.v3-theme-case .v3-visual .svg-node,.v3-theme-core .v3-visual .svg-node{fill:rgba(216,107,69,.12)}
+.v3-visual .svg-label{font:700 22px "Microsoft YaHei UI",sans-serif;fill:currentColor}
+.v3-visual .svg-small{font:600 16px "Microsoft YaHei UI",sans-serif;fill:var(--muted)}
+.dark .v3-visual .svg-small,.v3-theme-case .v3-visual .svg-small,.v3-theme-core .v3-visual .svg-small{fill:#bfb9b0}
+.ornament{display:none}
+.layout-chapter .ornament,.v3-theme-warning .ornament,.v3-theme-core .ornament{display:block}
+
+/* Four discourse interactive rotator */
+.v3-discourse-rotator{position:relative;min-height:470px;border:1px solid rgba(24,25,30,.18);padding:34px;background:rgba(255,255,255,.18)}
+.dark .v3-discourse-rotator,.v3-theme-core .v3-discourse-rotator{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.035)}
+.discourse-caption{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}
+.discourse-name{font-size:28px;font-weight:800;color:var(--orange)}
+.discourse-help{font:700 12px Consolas,monospace;letter-spacing:.08em;color:var(--muted)}
+.discourse-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:34px 48px;position:relative}
+.discourse-grid:before{content:"";position:absolute;left:50%;top:7%;bottom:7%;width:1px;background:rgba(24,25,30,.2)}
+.discourse-grid:after{content:"";position:absolute;left:7%;right:7%;top:50%;height:1px;background:rgba(24,25,30,.2)}
+.dark .discourse-grid:before,.dark .discourse-grid:after,.v3-theme-core .discourse-grid:before,.v3-theme-core .discourse-grid:after{background:rgba(255,255,255,.2)}
+.discourse-slot{position:relative;z-index:1;min-height:145px;padding:15px;background:var(--paper);border-top:4px solid var(--purple);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--ink)}
+.dark .discourse-slot,.v3-theme-core .discourse-slot{background:#191b21;color:#fff}
+.discourse-pos{font:700 12px Consolas,monospace;color:var(--muted);letter-spacing:.08em;margin-bottom:10px}
+.discourse-value{font:900 46px/1 "Cambria Math","Times New Roman",serif;transition:transform .28s ease,color .28s ease}
+.discourse-slot.v3-pulse .discourse-value{transform:scale(1.14);color:var(--orange)}
+.discourse-arrow{position:absolute;left:43%;right:43%;top:23%;z-index:3;color:var(--orange);font-size:26px;text-align:center}
+.discourse-divider{position:absolute;left:9%;right:9%;top:50%;z-index:3;height:4px;background:var(--orange);opacity:.72}
+.v3-discourse-marker{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+.v3-rotate-btn{border:1px solid var(--orange);background:transparent;color:inherit;padding:8px 11px;font:800 12px Consolas,monospace;letter-spacing:.06em}
+
+/* Presenter view */
+#lectureView:has(.notes-drawer:not(.hidden)) .stage-wrap{right:490px}
+#lectureView:has(.notes-drawer:not(.hidden)) .lecture-chrome{right:500px}
+.notes-drawer{width:460px;top:28px;bottom:28px;right:18px;padding:26px 26px 30px;border-color:rgba(255,255,255,.16)}
+.notes-drawer h2{font-size:28px}
+.notes-drawer p{font-size:16px;line-height:1.75}
+
+/* Annotation toolbar: vertical and out of title area */
+.ink-toolbar{left:auto;right:14px;top:50%;transform:translateY(-50%);flex-direction:column;padding:8px;width:56px;max-height:88vh;overflow:auto}
+.ink-toolbar .chrome-btn{padding:8px;min-width:38px;min-height:38px}
+.ink-toolbar input[data-width]{writing-mode:vertical-lr;direction:rtl;width:32px;height:100px}
+.tool-swatch{width:28px;height:28px;flex:0 0 auto}
+.draw-on .right-tools{padding-right:60px}
+
+/* Fullscreen: pure lecture canvas until pointer reaches bottom */
+#lectureView:fullscreen .lecture-chrome{opacity:0;pointer-events:none;transform:translateY(18px);transition:opacity .18s ease,transform .18s ease}
+#lectureView:fullscreen .lecture-chrome.v3-chrome-visible,#lectureView:fullscreen .lecture-chrome.v3-chrome-pinned{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* Knowledge map: actual relationship graph */
+.kg-shell{position:relative;min-width:1120px;height:790px;margin-top:12px;border:1px solid #353840;background:radial-gradient(circle at 20% 20%,rgba(103,86,168,.12),transparent 35%),#101218;overflow:hidden}
+.kg-shell svg{position:absolute;inset:0;width:100%;height:100%}
+.kg-edge{stroke:rgba(216,107,69,.46);stroke-width:2.3;fill:none}
+.kg-edge.cross{stroke:rgba(103,86,168,.65);stroke-dasharray:8 7}
+.kg-node{width:100%;height:100%;border:1px solid #454852;background:#1a1d24;color:#fff;text-align:left;padding:10px 12px;display:block}
+.kg-node:hover{border-color:var(--orange);background:#22242b}
+.kg-node b{display:block;color:var(--orange);font:900 15px Consolas,monospace;margin-bottom:5px}
+.kg-node span{display:block;font-size:13px;line-height:1.25}
+.kg-legend{display:flex;gap:22px;color:#b8b4ac;font-size:13px;margin:4px 0 14px}
+.kg-legend i{display:inline-block;width:26px;height:2px;background:var(--orange);vertical-align:middle;margin-right:7px}
+.kg-legend i.cross{background:var(--purple)}
+
+/* Soft warning/important pages */
+.v3-theme-warning .slide-course,.v3-theme-warning .point-list.v3-numbered .point:before{color:#31261f}
+.v3-theme-warning .slide-type,.v3-theme-warning .source,.v3-theme-warning .page-code{color:#46372f}
+.v3-theme-warning .v3-point-badge{color:#352920}
+
+@media(max-width:1100px){
+  #lectureView:has(.notes-drawer:not(.hidden)) .stage-wrap{right:0}
+  #lectureView:has(.notes-drawer:not(.hidden)) .lecture-chrome{right:18px}
+  .notes-drawer{width:min(460px,88vw);background:rgba(15,16,20,.985)}
+}
