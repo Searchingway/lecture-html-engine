@@ -39,6 +39,12 @@
       const v3=document.createElement('script');
       v3.src='v3-enhance.js';
       v3.onerror=()=>console.error('V3 enhancer failed to load');
+      v3.onload=()=>{
+        const fix=document.createElement('script');
+        fix.src='v3-mvp-audit-fix.js';
+        fix.onerror=()=>console.error('V3 MVP adaptive layout fix failed to load');
+        document.body.appendChild(fix);
+      };
       document.body.appendChild(v3);
     };
     document.body.appendChild(script);
