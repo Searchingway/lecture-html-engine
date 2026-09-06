@@ -1,9 +1,8 @@
 (()=>{
   const stage=document.querySelector('#stage');
   if(!stage)return;
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const now=()=>{try{return flatSlides[state.globalIndex]}catch(_){return null}};
-  const palette={03:'EXTIMACY / INSIDE ↔ OUTSIDE',04:'INTELLIGENCE / FAILURE',05:'COMPUTATION / IMPOSSIBILITY'};
+  const palette={'03':'EXTIMACY / INSIDE ↔ OUTSIDE','04':'INTELLIGENCE / FAILURE','05':'COMPUTATION / IMPOSSIBILITY'};
 
   function wrap(article){
     const body=article.querySelector('.slide-body');if(!body)return null;
@@ -19,7 +18,7 @@
   }
   function addKicker(article,text){
     const body=article.querySelector('.slide-body');if(!body||body.querySelector('.fine-kicker'))return;
-    const k=document.createElement('div');k.className='fine-kicker';k.textContent=text;
+    const k=document.createElement('div');k.className='fine-kicker';k.textContent=text||'';
     const title=body.querySelector('.slide-title');title?.before(k);
   }
   function mount(article,html,label){
@@ -58,19 +57,21 @@
     const s=now();const article=stage.querySelector('.slide-shell');
     if(!s||!article||!['03','04','05'].includes(String(s.courseId)))return;
     const c=String(s.courseId),i=String(s.localIndex).padStart(2,'0'),key=`${c}-${i}`;
-    if(article.dataset.fineKey===key)return;
+    const needsMoebius=key==='03-02'&&!article.querySelector('.fine-visual');
+    if(article.dataset.fineKey===key&&!needsMoebius)return;
     article.dataset.fineKey=key;
-    article.classList.add('fine-course',`fine-c${c}-s${i}`);
+    article.classList.add('fine-course',`fine-c${c}-s${i}`,`fine-count-${article.querySelectorAll('.point').length}`);
     if(dark.has(key))article.classList.add('fine-dark');else if(warm.has(key))article.classList.add('fine-warm');else article.classList.add('fine-paper');
     if(summaries.has(key))article.classList.add('fine-summary');
     addKicker(article,palette[c]);
-    if(c==='03'&&i==='02'){
-      const existing=article.querySelector('.v3-visual');if(existing){existing.classList.add('fine-visual');article.querySelector('.slide-body')?.classList.add('fine-visual-layout');article.querySelector('.v3-copy')?.classList.add('fine-copy')}
+    if(key==='03-02'){
+      const existing=article.querySelector('.v3-visual');
+      if(existing){existing.classList.add('fine-visual');article.querySelector('.slide-body')?.classList.add('fine-visual-layout');article.querySelector('.v3-copy')?.classList.add('fine-copy')}
     }
     const fn=visuals[key];if(fn)mount(article,fn(),s.title);
     requestAnimationFrame(()=>{try{resizeStage()}catch(_){}});
   }
-  let timer=0;const schedule=()=>{clearTimeout(timer);timer=setTimeout(enhance,45)};
+  let timer=0;const schedule=()=>{clearTimeout(timer);timer=setTimeout(enhance,55)};
   new MutationObserver(schedule).observe(stage,{childList:true,subtree:true});
   document.addEventListener('click',schedule);
   document.addEventListener('keydown',schedule);
