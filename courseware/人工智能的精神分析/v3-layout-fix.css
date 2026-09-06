@@ -1,0 +1,157 @@
+/*
+ * V3 layout balance pass · 2026-09-06
+ * Fixes text-only split layouts and sparse 1–2 point pages without changing course content.
+ * Goal: deliberate editorial composition instead of accidental empty columns / tiny orphan terms.
+ */
+
+/* 1) A split layout only makes sense when a real teaching visual occupies the other half.
+   Without .v3-visual the old grid leaves title/terms marooned in one column and points in the other. */
+.layout-split-left .slide-body:not(:has(.v3-visual)),
+.layout-split-right .slide-body:not(:has(.v3-visual)){
+  display:block!important;
+  grid-template-columns:none!important;
+  gap:0!important;
+}
+.layout-split-left .slide-body:not(:has(.v3-visual)) .point-list,
+.layout-split-right .slide-body:not(:has(.v3-visual)) .point-list{
+  grid-column:auto!important;
+  max-width:100%!important;
+}
+.layout-split-left .slide-body:not(:has(.v3-visual)) .slide-deck,
+.layout-split-right .slide-body:not(:has(.v3-visual)) .slide-deck{
+  max-width:1220px;
+}
+
+/* 2) Sparse text pages: build a clear top / argument / concept rhythm.
+   Exclude layouts that already have their own strong visual grammar. */
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):not(.layout-timeline):not(.layout-process):not(.layout-axis):not(.layout-triad):not(.layout-quad):not(.layout-summary):not(.layout-cards):not(.layout-compare):has(.point-list > .point:only-child) .slide-body,
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):not(.layout-timeline):not(.layout-process):not(.layout-axis):not(.layout-triad):not(.layout-quad):not(.layout-summary):not(.layout-cards):not(.layout-compare):has(.point-list > .point:nth-child(2):last-child) .slide-body{
+  padding-bottom:124px;
+}
+
+/* One claim: make it a thesis panel rather than a lonely line floating at the top. */
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):has(.point-list > .point:only-child) .point-list{
+  max-width:1320px!important;
+  margin-top:30px;
+}
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):has(.point-list > .point:only-child) .point{
+  min-height:132px;
+  padding:28px 30px!important;
+  border-left:0!important;
+  border-top:5px solid var(--orange)!important;
+  background:rgba(255,255,255,.46)!important;
+  font-size:29px!important;
+  line-height:1.48!important;
+  display:grid;
+  align-content:center;
+}
+.slide-shell.dark:not(.layout-chapter):has(.point-list > .point:only-child) .point,
+.slide-shell.v3-theme-core:has(.point-list > .point:only-child) .point,
+.slide-shell.v3-theme-case:has(.point-list > .point:only-child) .point{
+  background:rgba(255,255,255,.065)!important;
+  border-top-color:var(--orange)!important;
+}
+.slide-shell.v3-theme-warning:has(.point-list > .point:only-child) .point{
+  background:rgba(255,255,255,.18)!important;
+  border-top-color:#2f241d!important;
+}
+
+/* Two claims: use the available width as a balanced pair instead of stacking them in one narrow column. */
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):not(.layout-timeline):not(.layout-process):not(.layout-axis):not(.layout-triad):not(.layout-quad):not(.layout-summary):not(.layout-cards):not(.layout-compare):has(.point-list > .point:nth-child(2):last-child) .point-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  max-width:none!important;
+  gap:24px!important;
+  margin-top:28px;
+}
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):not(.layout-timeline):not(.layout-process):not(.layout-axis):not(.layout-triad):not(.layout-quad):not(.layout-summary):not(.layout-cards):not(.layout-compare):has(.point-list > .point:nth-child(2):last-child) .point{
+  min-height:172px;
+  padding:24px 26px!important;
+  border-left:0!important;
+  border-top:5px solid var(--orange)!important;
+  background:rgba(255,255,255,.42)!important;
+  font-size:26px!important;
+  line-height:1.48!important;
+  align-content:start;
+}
+.slide-shell.dark:has(.point-list > .point:nth-child(2):last-child) .point,
+.slide-shell.v3-theme-core:has(.point-list > .point:nth-child(2):last-child) .point,
+.slide-shell.v3-theme-case:has(.point-list > .point:nth-child(2):last-child) .point{
+  background:rgba(255,255,255,.06)!important;
+}
+
+/* Preserve BOOK / EXPLAIN / EXTENSION badges inside the larger panels. */
+.slide-shell:has(.point-list > .point:only-child) .v3-point,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .v3-point{
+  grid-template-columns:96px minmax(0,1fr);
+  gap:18px;
+}
+.slide-shell:has(.point-list > .point:only-child) .v3-point-badge,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .v3-point-badge{
+  margin-top:4px;
+}
+
+/* 3) A single formal term should act as an editorial anchor, not a tiny orphaned chip. */
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden),
+.slide-shell:not(.layout-chapter):not(.layout-case):not(.layout-formula-step):not(.layout-diagram):not(.layout-next):not(.layout-terminal):not(.layout-map):has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden){
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:18px;
+  margin:0!important;
+  display:flex;
+  align-items:flex-end;
+  gap:16px;
+  padding-top:14px;
+  border-top:1px solid rgba(24,25,30,.16);
+}
+.slide-shell.dark:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden),
+.slide-shell.dark:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden),
+.slide-shell.v3-theme-core:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden),
+.slide-shell.v3-theme-core:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden),
+.slide-shell.v3-theme-case:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden),
+.slide-shell.v3-theme-case:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden){
+  border-top-color:rgba(255,255,255,.16);
+}
+.slide-shell:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden)::before,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden)::before{
+  content:"CONCEPT";
+  color:var(--orange);
+  font:900 11px/1 Consolas,monospace;
+  letter-spacing:.18em;
+  padding-bottom:7px;
+}
+.slide-shell:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden) .term{
+  border:0!important;
+  padding:0!important;
+  font-family:"Microsoft YaHei UI","PingFang SC",sans-serif;
+  font-size:42px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  letter-spacing:-.045em;
+  color:rgba(24,25,30,.22)!important;
+}
+.slide-shell.dark:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell.dark:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell.v3-theme-core:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell.v3-theme-core:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell.v3-theme-case:has(.point-list > .point:only-child) .terms:not(.v3-terms-hidden) .term,
+.slide-shell.v3-theme-case:has(.point-list > .point:nth-child(2):last-child) .terms:not(.v3-terms-hidden) .term{
+  color:rgba(255,255,255,.20)!important;
+}
+
+/* 4) Keep long sparse-page titles assertive but leave enough breathing room for the argument. */
+.slide-shell:has(.point-list > .point:only-child) .slide-title.v3-title-long,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .slide-title.v3-title-long{
+  font-size:52px;
+  max-width:1420px;
+}
+.slide-shell:has(.point-list > .point:only-child) .slide-title.v3-title-xlong,
+.slide-shell:has(.point-list > .point:nth-child(2):last-child) .slide-title.v3-title-xlong{
+  font-size:45px;
+  max-width:1420px;
+}
+
+/* 5) Native fullscreen notice belongs to the browser; keep our own toolbar clear of the top center. */
+#lectureView:fullscreen .ink-toolbar{top:50%;right:14px}
