@@ -3,7 +3,7 @@ name: Import Mizong HQ artwork
 on:
   push:
     paths:
-      - '.transfer/mizong/part01.b64'
+      - '.transfer/mizong/part36.b64'
 
 permissions:
   contents: write
