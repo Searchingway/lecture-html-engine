@@ -1,0 +1,235 @@
+:root{
+  --ink:#171813;
+  --paper:#e8e3d6;
+  --paper-2:#ddd7c9;
+  --muted:#69695f;
+  --line:#1e201a;
+  --green:#314a3a;
+  --green2:#566b5d;
+  --chalk:#f4efe4;
+  --black:#11120f;
+  --stage:#090a08;
+  --shadow:0 28px 80px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body,#app{width:100%;height:100%;margin:0}
+body{
+  background:var(--stage);
+  color:var(--ink);
+  overflow:hidden;
+  font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit}
+#app{display:grid;grid-template-rows:48px minmax(0,1fr)}
+#topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  height:48px;padding:0 18px;
+  background:#121310;color:#eee9dd;border-bottom:1px solid #31332b;
+  z-index:50;
+}
+.brand{display:flex;align-items:baseline;gap:14px;white-space:nowrap}
+.brand b{font-size:14px;letter-spacing:.12em}
+.brand span{font-size:12px;color:#9e9d94}
+.toolbar{display:flex;gap:7px}
+.toolbar button,.notes-head button{
+  border:1px solid #45483d;background:#1b1d18;color:#e8e4d8;border-radius:6px;
+  padding:6px 10px;cursor:pointer;font-size:12px
+}
+.toolbar button:hover{border-color:#7d8472}
+#stage{position:relative;display:grid;place-items:center;min-height:0;background:#090a08;overflow:hidden}
+#deck{
+  position:relative;
+  width:min(calc(100vw - 86px),calc((100vh - 84px)*16/9));
+  height:min(calc(100vh - 84px),calc((100vw - 86px)*9/16));
+  aspect-ratio:16/9;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  background:var(--paper);
+}
+.slide{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(255,255,255,.42),transparent 26%),
+    linear-gradient(115deg,rgba(0,0,0,.025),transparent 30%),
+    var(--paper);
+  overflow:hidden;
+}
+.slide:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(0,0,0,.035) 0,rgba(0,0,0,.035) 1px,transparent 1px,transparent 5px);
+  mix-blend-mode:multiply;
+}
+.slide-inner{position:relative;z-index:2;width:100%;height:100%;padding:6.2% 7.1%;display:flex;flex-direction:column}
+.slide.dark,.slide.chapter,.slide.cover,.slide.end,.slide.quote_dark{
+  background:#151612;color:var(--chalk);
+}
+.slide.dark:before,.slide.chapter:before,.slide.cover:before,.slide.end:before,.slide.quote_dark:before{
+  opacity:.16;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 6px)
+}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;color:var(--green);
+  font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px
+}
+.dark .eyebrow,.chapter .eyebrow,.cover .eyebrow,.end .eyebrow,.quote_dark .eyebrow{color:#9cb3a1}
+.eyebrow:before{content:"";width:34px;height:2px;background:currentColor}
+h1,h2,h3,p{margin:0}
+.title{
+  font-family:"STSong","Songti SC","SimSun",serif;
+  font-size:clamp(29px,3.25vw,58px);
+  line-height:1.08;letter-spacing:-.025em;font-weight:900;
+  max-width:92%;
+}
+.cover .title{font-size:clamp(54px,7.2vw,120px);letter-spacing:.02em}
+.subtitle{
+  font-family:"STSong","Songti SC","SimSun",serif;
+  font-size:clamp(22px,2.55vw,46px);line-height:1.25;font-weight:700
+}
+.big-quote{
+  font-family:"STSong","Songti SC","SimSun",serif;
+  font-size:clamp(28px,3.3vw,60px);line-height:1.36;font-weight:800;white-space:pre-line
+}
+.body{font-size:clamp(14px,1.32vw,24px);line-height:1.7;color:#36372f}
+.dark .body,.chapter .body,.cover .body,.end .body,.quote_dark .body{color:#d8d4ca}
+.small{font-size:clamp(10px,.9vw,15px);line-height:1.55;color:var(--muted)}
+.dark .small,.chapter .small,.cover .small,.end .small,.quote_dark .small{color:#9d9d94}
+.foot{
+  position:absolute;left:7.1%;right:7.1%;bottom:4.2%;
+  font-size:clamp(9px,.76vw,13px);line-height:1.45;color:#77776e;border-top:1px solid rgba(23,24,19,.16);padding-top:8px
+}
+.dark .foot,.chapter .foot,.cover .foot,.end .foot,.quote_dark .foot{color:#aaa99f;border-color:rgba(255,255,255,.14)}
+.page-no{
+  position:absolute;right:3.1%;bottom:2.8%;font:700 10px/1 Consolas,monospace;letter-spacing:.12em;color:#8a897f
+}
+.dark .page-no,.chapter .page-no,.cover .page-no,.end .page-no,.quote_dark .page-no{color:#72756c}
+.accent-line{height:4px;width:66px;background:var(--green);margin:18px 0 20px}
+.grid{display:grid;gap:18px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{
+  border:1.5px solid rgba(23,24,19,.34);
+  background:rgba(255,255,255,.22);padding:22px 22px 20px;min-height:120px;
+  position:relative
+}
+.card:after{content:"";position:absolute;right:10px;bottom:10px;width:18px;height:18px;border-right:1px solid rgba(23,24,19,.35);border-bottom:1px solid rgba(23,24,19,.35)}
+.card .num{font:900 11px/1 Consolas,monospace;letter-spacing:.14em;color:var(--green);margin-bottom:18px}
+.card h3{font-family:"STSong","Songti SC","SimSun",serif;font-size:clamp(18px,1.8vw,30px);line-height:1.18;margin-bottom:10px}
+.card p,.card li{font-size:clamp(11px,1.02vw,17px);line-height:1.58;color:#4d4e45}
+.dark .card,.chapter .card,.quote_dark .card{border-color:rgba(255,255,255,.27);background:rgba(255,255,255,.025)}
+.dark .card h3,.chapter .card h3,.quote_dark .card h3{color:#f0ece2}
+.dark .card p,.chapter .card p,.quote_dark .card p{color:#b9b8af}
+.green{color:var(--green)!important}
+.badge{display:inline-block;border:1px solid currentColor;padding:4px 7px;font-size:10px;letter-spacing:.12em;font-weight:800}
+.split{display:grid;grid-template-columns:1.04fr .96fr;gap:5.5%;align-items:center;flex:1}
+.split.reverse{grid-template-columns:.96fr 1.04fr}
+.statement-box{border-left:5px solid var(--green);padding:8px 0 8px 22px}
+.list{display:grid;gap:12px;margin-top:18px}
+.list-row{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.list-row .idx{font:800 11px/1.4 Consolas,monospace;color:var(--green);padding-top:4px}
+.list-row b{display:block;font-size:clamp(13px,1.25vw,21px);margin-bottom:4px}
+.list-row span{font-size:clamp(11px,.96vw,16px);line-height:1.48;color:#57584f}
+.flow{display:flex;align-items:stretch;gap:10px;margin-top:28px;flex:1}
+.flow .step{flex:1;border:1.5px solid #4c4d44;padding:18px 16px;position:relative;background:rgba(255,255,255,.18)}
+.flow .step:not(:last-child):after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);font-size:22px;background:var(--paper);padding:0 3px}
+.flow .step b{font-family:"STSong","Songti SC","SimSun",serif;font-size:clamp(15px,1.5vw,25px);display:block;margin-bottom:10px}
+.flow .step span{font-size:clamp(10px,.9vw,15px);line-height:1.5;color:#5c5d54}
+.vertical{display:grid;gap:8px;margin-top:24px}
+.vertical .vstep{border-left:3px solid var(--green);padding:11px 18px;background:rgba(255,255,255,.18);display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}
+.vstep b{font-family:"STSong","Songti SC","SimSun",serif;font-size:clamp(15px,1.35vw,23px)}
+.vstep span{font-size:clamp(10px,.9vw,15px);color:#5c5d54}
+.big-word{
+  font-family:"STSong","Songti SC","SimSun",serif;font-size:clamp(46px,6vw,102px);font-weight:900;line-height:.95
+}
+.poster-copy{position:absolute;left:7.1%;bottom:9.8%;z-index:4;max-width:58%}
+.poster-copy .subtitle{font-size:clamp(24px,3vw,52px);margin-top:8px}
+.sketch{position:absolute;z-index:1;pointer-events:none}
+.sketch.right{right:-1%;top:0;width:62%;height:100%}
+.sketch.full{inset:0;width:100%;height:100%}
+.sketch:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--black) 0%,rgba(17,18,15,.58) 36%,transparent 72%)}
+.cover .sketch:after,.chapter .sketch:after,.end_image .sketch:after{background:linear-gradient(90deg,#151612 0%,rgba(21,22,18,.72) 34%,rgba(21,22,18,.14) 72%,rgba(21,22,18,.1))}
+.art-svg{width:100%;height:100%}
+.diagram-area{flex:1;position:relative;margin-top:18px}
+.loop{
+  width:min(62%,560px);aspect-ratio:1;position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);
+  border:3px solid #22241d;border-radius:50%
+}
+.loop:before{content:"";position:absolute;right:4%;top:17%;width:0;height:0;border-left:18px solid #22241d;border-top:10px solid transparent;border-bottom:10px solid transparent;transform:rotate(32deg)}
+.loop-node{
+  position:absolute;width:150px;min-height:75px;padding:11px;border:1.5px solid #20221c;background:var(--paper);display:grid;place-items:center;text-align:center;font-size:13px;font-weight:700
+}
+.loop-node b{display:block;color:var(--green);font:900 12px/1 Consolas;margin-bottom:5px}
+.loop-node.a{left:50%;top:-32px;transform:translateX(-50%)}
+.loop-node.b{right:-85px;bottom:18%}
+.loop-node.c{left:-85px;bottom:18%}
+.logic-center{display:grid;place-items:center;flex:1;text-align:center}
+.logic-center .formula{font:900 clamp(28px,4vw,68px)/1.35 "STSong","Songti SC",serif}
+.logic-center .question{margin-top:22px;font-size:clamp(18px,2vw,34px);color:var(--green);font-weight:900}
+.path-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;flex:1}
+.path-card{padding:24px 20px;border-top:6px solid var(--green);background:rgba(255,255,255,.22);border-left:1px solid rgba(0,0,0,.18);border-right:1px solid rgba(0,0,0,.18);border-bottom:1px solid rgba(0,0,0,.18)}
+.path-card h3{font:900 clamp(22px,2.1vw,36px)/1.1 "STSong","Songti SC",serif;margin-bottom:14px}
+.path-card p{font-size:clamp(11px,1vw,17px);line-height:1.55}
+.path-card em{display:block;margin-top:18px;font-style:normal;font:800 10px/1.4 Consolas,monospace;letter-spacing:.11em;color:var(--green)}
+.word-cloud{flex:1;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;padding:4% 9%}
+.word-cloud span{font-family:"STSong","Songti SC",serif;font-size:clamp(24px,3.2vw,58px);font-weight:900;border:1px solid #77776c;padding:14px 20px;transform:rotate(var(--r))}
+.venn{position:relative;flex:1;min-height:300px}
+.venn .circle{position:absolute;width:36%;aspect-ratio:1;border:2px solid #262821;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:900;font-size:clamp(18px,2vw,34px);background:rgba(232,227,214,.58)}
+.venn .c1{left:24%;top:3%}.venn .c2{left:42%;top:3%}.venn .c3{left:33%;top:31%}
+.venn .object{position:absolute;right:9%;bottom:10%;width:18%;aspect-ratio:1;border:3px dashed var(--green);border-radius:48% 52% 57% 43%;display:grid;place-items:center;font-weight:900;color:var(--green);transform:rotate(-9deg)}
+.recursion-wrap{flex:1;display:grid;place-items:center}
+.rec-box{border:2px solid #292b24;padding:18px;width:76%;height:72%;position:relative;background:rgba(255,255,255,.12)}
+.rec-box .rec-box{width:76%;height:70%;position:absolute;right:6%;bottom:7%;background:rgba(232,227,214,.88)}
+.rec-box label{font:800 11px/1 Consolas;letter-spacing:.1em;color:var(--green)}
+.endings{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:end;flex:1;margin-top:20px}
+.ending{border:1.5px solid #272920;padding:20px;position:relative}
+.ending:nth-child(1){height:46%}.ending:nth-child(2){height:63%}.ending:nth-child(3){height:82%;background:rgba(49,74,58,.09)}
+.ending h3{font:900 clamp(19px,1.8vw,30px)/1.2 "STSong","Songti SC",serif}
+.ending b{color:var(--green);display:block;margin:11px 0 8px}
+.ending p{font-size:clamp(10px,.92vw,15px);line-height:1.48}
+.question-slide{display:grid;place-items:center;text-align:center;height:100%}
+.question-slide .big-quote{max-width:80%}
+#pageIndicator{
+  position:absolute;right:20px;bottom:15px;color:#b5b5ad;font:800 11px/1 Consolas,monospace;z-index:20;
+  background:rgba(10,10,9,.7);padding:6px 8px;border-radius:5px
+}
+#progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:#1d1f19;z-index:30}
+#progress i{display:block;height:100%;background:#687e6e;width:0;transition:width .2s ease}
+.nav{
+  position:absolute;top:50%;transform:translateY(-50%);width:38px;height:74px;border:0;border-radius:7px;background:rgba(255,255,255,.075);color:#bdbdb4;font-size:37px;cursor:pointer;z-index:15;opacity:.55
+}
+.nav:hover{opacity:1;background:rgba(255,255,255,.13)}.nav-left{left:8px}.nav-right{right:8px}
+#notesPanel{
+  position:fixed;right:0;top:48px;bottom:0;width:min(420px,86vw);z-index:70;background:#171914;color:#e7e3d8;border-left:1px solid #41443a;transform:translateX(102%);transition:.22s ease;padding:0 20px 24px;overflow:auto
+}
+#notesPanel.show{transform:none}
+.notes-head{height:48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #36392f;position:sticky;top:0;background:#171914}
+#notesContent{padding:18px 0;color:#c8c5bb;line-height:1.8;font-size:14px;white-space:pre-wrap}
+#overview{position:fixed;inset:0;z-index:90;background:rgba(8,9,7,.96);color:#eee9dd;opacity:0;visibility:hidden;transition:.18s ease}
+#overview.show{opacity:1;visibility:visible}
+.overview-shell{height:100%;padding:20px;overflow:auto}
+.overview-head{position:sticky;top:-20px;background:#0c0d0b;padding:16px 0 13px;display:flex;justify-content:space-between;z-index:4;border-bottom:1px solid #31342b}
+.overview-head span{font-size:12px;color:#8f9189}
+#thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;padding:18px 0}
+.thumb{aspect-ratio:16/9;background:#ddd7ca;color:#171813;border:1px solid #3b3e34;padding:12px;cursor:pointer;position:relative;overflow:hidden}
+.thumb.chapter,.thumb.cover,.thumb.end,.thumb.quote_dark{background:#171813;color:#eee9dd}
+.thumb small{font:800 9px/1 Consolas;color:#728177}
+.thumb b{display:block;font:900 15px/1.2 "STSong","Songti SC",serif;margin-top:7px}
+.thumb:hover{outline:2px solid #738779}
+.app-full #topbar{display:none}
+.app-full{grid-template-rows:1fr!important}
+.app-full #deck{width:min(100vw,calc(100vh*16/9));height:min(100vh,calc(100vw*9/16));box-shadow:none}
+.app-full .nav{opacity:0}.app-full #stage:hover .nav{opacity:.35}.app-full #pageIndicator{opacity:.45}
+@media(max-width:900px){
+  #app{grid-template-rows:42px 1fr}.brand span{display:none}
+  #topbar{height:42px}.toolbar button{padding:5px 8px}
+  #deck{width:min(calc(100vw - 18px),calc((100vh - 62px)*16/9));height:min(calc(100vh - 62px),calc((100vw - 18px)*9/16))}
+  .slide-inner{padding:5.2% 5.8%}.foot{left:5.8%;right:5.8%}
+  .grid.four{gap:8px}.card{padding:12px;min-height:auto}
+}
+@media print{
+  body{overflow:visible;background:white}
+  #topbar,.nav,#pageIndicator,#progress,#notesPanel,#overview{display:none!important}
+  #stage,#deck{display:block;width:auto;height:auto;background:white;box-shadow:none}
+  .slide{position:relative;width:100vw;height:56.25vw;page-break-after:always}
+}
