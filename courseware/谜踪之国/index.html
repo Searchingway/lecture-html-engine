@@ -38,7 +38,29 @@
   };
   window.addEventListener('error',e=>showStartupError(e.message||'未知脚本错误'));
   window.addEventListener('unhandledrejection',e=>showStartupError((e.reason&&e.reason.message)||e.reason||'Promise 启动错误'));
-  /* 某些浏览器/扩展会禁止 eval。现有 app.js 是压缩启动器，因此把 eval 改成普通 script 注入。 */
+
+  // Edge/Chromium 某些环境下 Response(stream).text() 会对 DecompressionStream 报 Failed to fetch。
+  // 这里仅把 text() 改为直接读取 ReadableStream，避免把本地解压流当网络响应处理。
+  if(window.Response && Response.prototype && Response.prototype.text){
+    const nativeText=Response.prototype.text;
+    Response.prototype.text=async function(){
+      if(this.body && typeof this.body.getReader==='function'){
+        try{
+          const reader=this.body.getReader();
+          const chunks=[];let total=0;
+          for(;;){const r=await reader.read();if(r.done)break;chunks.push(r.value);total+=r.value.length;}
+          const out=new Uint8Array(total);let off=0;
+          for(const c of chunks){out.set(c,off);off+=c.length;}
+          return new TextDecoder().decode(out);
+        }catch(err){
+          try{return await nativeText.call(this);}catch(_){throw err;}
+        }
+      }
+      return nativeText.call(this);
+    };
+  }
+
+  // 兼容旧版压缩启动器：将 eval 转成普通 script 注入。
   globalThis.eval=function(code){
     const s=document.createElement('script');
     s.text=String(code);
