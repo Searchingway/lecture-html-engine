@@ -29,6 +29,24 @@
   <aside id="notesPanel"><div class="notes-head"><b>讲稿 / 备注</b><button id="closeNotes">×</button></div><div id="notesContent"></div></aside>
   <section id="overview" aria-hidden="true"><div class="overview-shell"><div class="overview-head"><b>页面总览</b><span>点击任意页跳转 · O / Esc 关闭</span></div><div id="thumbs"></div></div></section>
 </div>
+<script>
+(function(){
+  const showStartupError=(msg)=>{
+    const deck=document.getElementById('deck');
+    if(!deck)return;
+    deck.innerHTML='<section class="slide"><div class="slide-inner" style="display:grid;place-items:center;text-align:center"><div><h1 class="title">课件启动失败</h1><p style="font-size:20px;line-height:1.7">'+String(msg).replace(/[&<>]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[s]))+'</p><p style="opacity:.7">请强制刷新页面；如果仍然出现，请把此错误信息发给我。</p></div></div></section>';
+  };
+  window.addEventListener('error',e=>showStartupError(e.message||'未知脚本错误'));
+  window.addEventListener('unhandledrejection',e=>showStartupError((e.reason&&e.reason.message)||e.reason||'Promise 启动错误'));
+  /* 某些浏览器/扩展会禁止 eval。现有 app.js 是压缩启动器，因此把 eval 改成普通 script 注入。 */
+  globalThis.eval=function(code){
+    const s=document.createElement('script');
+    s.text=String(code);
+    document.head.appendChild(s);
+    s.remove();
+  };
+})();
+</script>
 <script src="./slides.js"></script>
 <script src="./art.js"></script>
 <script src="./app.js"></script>
