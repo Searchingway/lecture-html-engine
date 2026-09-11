@@ -1,0 +1,52 @@
+name: Import Mizong HQ artwork
+
+on:
+  push:
+    paths:
+      - '.transfer/mizong/part12.b64'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild high-quality artwork archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .transfer/mizong/part*.b64 > /tmp/mizong-assets.b64
+          base64 -d /tmp/mizong-assets.b64 > /tmp/mizong-assets.zip
+          mkdir -p 'courseware/谜踪之国/assets'
+          unzip -oq /tmp/mizong-assets.zip -d 'courseware/谜踪之国/assets'
+
+      - name: Verify imported assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='cover.webp jungle.webp desert.webp shennong.webp youqian.webp sima.webp green.webp stele.webp entropy.webp final.webp'
+          for f in $expected; do
+            test -s "courseware/谜踪之国/assets/$f"
+            bytes=$(stat -c%s "courseware/谜踪之国/assets/$f")
+            if [ "$bytes" -lt 60000 ]; then
+              echo "Asset unexpectedly small: $f ($bytes bytes)" >&2
+              exit 1
+            fi
+          done
+
+      - name: Commit reconstructed HQ artwork
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .transfer/mizong
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'courseware/谜踪之国/assets' .transfer/mizong
+          git commit -m 'fix: restore high-quality Mizong artwork sources'
+          git push
