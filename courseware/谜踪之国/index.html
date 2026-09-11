@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#11120f">
+<title>《谜踪之国》· 寻向迷津</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand"><b>寻向迷津</b><span>《谜踪之国》讲解课件</span></div>
+    <div class="toolbar">
+      <button id="overviewBtn" title="总览（O）">总览</button>
+      <button id="notesBtn" title="讲稿（N）">讲稿</button>
+      <button id="fullscreenBtn" title="全屏（F）">全屏</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <div id="deck" aria-live="polite"></div>
+    <button id="prev" class="nav nav-left" aria-label="上一页">‹</button>
+    <button id="next" class="nav nav-right" aria-label="下一页">›</button>
+    <div id="pageIndicator"></div>
+    <div id="progress"><i></i></div>
+  </main>
+
+  <aside id="notesPanel"><div class="notes-head"><b>讲稿 / 备注</b><button id="closeNotes">×</button></div><div id="notesContent"></div></aside>
+  <section id="overview" aria-hidden="true"><div class="overview-shell"><div class="overview-head"><b>页面总览</b><span>点击任意页跳转 · O / Esc 关闭</span></div><div id="thumbs"></div></div></section>
+</div>
+<script src="./slides.js"></script>
+<script src="./art.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
