@@ -3,7 +3,7 @@ name: Import Mizong HQ artwork
 on:
   push:
     paths:
-      - '.transfer/mizong/part12.b64'
+      - '.transfer/mizong/part01.b64'
 
 permissions:
   contents: write
@@ -23,6 +23,7 @@ jobs:
           set -euo pipefail
           cat .transfer/mizong/part*.b64 > /tmp/mizong-assets.b64
           base64 -d /tmp/mizong-assets.b64 > /tmp/mizong-assets.zip
+          echo 'd56a1d1fc7751894ec7414d58e12a8b2974fbb4503a793c81e75f1b015c075df  /tmp/mizong-assets.zip' | sha256sum -c -
           mkdir -p 'courseware/谜踪之国/assets'
           unzip -oq /tmp/mizong-assets.zip -d 'courseware/谜踪之国/assets'
 
@@ -34,7 +35,7 @@ jobs:
           for f in $expected; do
             test -s "courseware/谜踪之国/assets/$f"
             bytes=$(stat -c%s "courseware/谜踪之国/assets/$f")
-            if [ "$bytes" -lt 60000 ]; then
+            if [ "$bytes" -lt 35000 ]; then
               echo "Asset unexpectedly small: $f ($bytes bytes)" >&2
               exit 1
             fi
