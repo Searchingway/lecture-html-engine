@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11120f">
 <title>《谜踪之国》· 寻向迷津</title>
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./styles.css?v=20260911-1558">
 </head>
 <body>
 <div id="app">
@@ -39,8 +39,6 @@
   window.addEventListener('error',e=>showStartupError(e.message||'未知脚本错误'));
   window.addEventListener('unhandledrejection',e=>showStartupError((e.reason&&e.reason.message)||e.reason||'Promise 启动错误'));
 
-  // Edge/Chromium 某些环境下 Response(stream).text() 会对 DecompressionStream 报 Failed to fetch。
-  // 这里仅把 text() 改为直接读取 ReadableStream，避免把本地解压流当网络响应处理。
   if(window.Response && Response.prototype && Response.prototype.text){
     const nativeText=Response.prototype.text;
     Response.prototype.text=async function(){
@@ -60,7 +58,6 @@
     };
   }
 
-  // 兼容旧版压缩启动器：将 eval 转成普通 script 注入。
   globalThis.eval=function(code){
     const s=document.createElement('script');
     s.text=String(code);
@@ -69,8 +66,8 @@
   };
 })();
 </script>
-<script src="./slides.js"></script>
-<script src="./art.js"></script>
-<script src="./app.js"></script>
+<script src="./slides.js?v=20260911-1558"></script>
+<script src="./art.js?v=20260911-1558"></script>
+<script src="./app.js?v=20260911-1558"></script>
 </body>
 </html>
