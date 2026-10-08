@@ -1,1 +1,1 @@
-window.LECTURE_META={id:'ai-psychoanalysis-course-v2',title:'人工智能的精神分析｜系列课程重构版',homeKicker:'PSYCHOANALYSIS × ARTIFICIAL INTELLIGENCE // COURSE V2',homeTitleHtml:'人工智能的<em>精神分析</em>',description:'23节、175页的重构版课程：每页只完成一个教学动作，严格区分书中观点、解释性转述与延伸。',courseCount:23,totalSlides:175};
+window.LECTURE_META={id:'ai-psychoanalysis-course-v2',title:'人工智能的精神分析｜系列课程重构版',homeKicker:'PSYCHOANALYSIS × ARTIFICIAL INTELLIGENCE // VISUAL EDITION V5',homeTitleHtml:'人工智能的<em>精神分析</em>',description:'23节、175页的逐页美术设计版课程：每页只完成一个教学动作，严格区分书中观点、解释性转述与延伸。',courseCount:23,totalSlides:175};
