@@ -38,6 +38,17 @@
       addon.onerror=()=>reject(new Error('V4 教学组件未能加载'));
       document.body.appendChild(addon);
     });
+    // V5: load individually authored 175-page art plan and its renderer
+    // before lecture-engine creates the first slide.
+    for(const name of ['v5-art-plan.js','v5-art-engine.js']){
+      await new Promise((resolve,reject)=>{
+        const addon=document.createElement('script');
+        addon.src=name+'?v=20261008-1';
+        addon.onload=resolve;
+        addon.onerror=()=>reject(new Error('V5 resource failed: '+name));
+        document.body.appendChild(addon);
+      });
+    }
     delete window.__V2_PARTS__; delete window.__V2_COURSES__; delete window.addV2Course;
     const script=document.createElement('script');
     script.src='../../engine/lecture-engine.js';

@@ -71,8 +71,8 @@
 
 ## 课件
 
-- **《人工智能的精神分析》系列课程**：215 页，EVA-inspired 黑 / 橘 / 米白视觉，高对比、真全屏、逐条讲解、数位板批注。  
-  入口：[`courseware/人工智能的精神分析/index.html`](courseware/人工智能的精神分析/index.html)
+- **《人工智能的精神分析》系列课程**：现行 23 节、175 页 V5 逐页美术优化版，17 种构图语法、6 套高对比色板，保留真全屏、逐条讲解与数位板批注。  
+  入口：[`courseware/人工智能的精神分析/index.html`](courseware/人工智能的精神分析/index.html)；[175 页逐页修改表](courseware/人工智能的精神分析/V5-PAGE-CHANGELOG.md)；[可筛选的逐页设计报告](courseware/人工智能的精神分析/v5-page-report.html)
 - **《恶心》讲解课件**：当前完成 91 页结构稿，正式演示页逐页制作中。  
   入口：[`courseware/恶心/index.html`](courseware/恶心/index.html)
 - **《谜踪之国》讲解课件**：76 页，黑白素描 / 地下遗迹视觉，支持总览、讲稿、全屏与按页保存的透明 Canvas 批注。  

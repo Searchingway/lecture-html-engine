@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人工智能的精神分析 · 175页逐页美术修改报告</title>
+<style>
+:root{color-scheme:dark;--bg:#111318;--ink:#F2EEE6;--muted:#C8C0B5;--accent:#E58A68;--line:#34333a}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei UI",system-ui,sans-serif;margin:0}
+header{max-width:1480px;margin:0 auto;padding:65px 36px 35px;border-bottom:2px solid var(--line)}small{color:var(--accent);letter-spacing:.15em;font-weight:800}
+h1{font-size:clamp(37px,5vw,80px);letter-spacing:-.05em;line-height:1.07;margin:17px 0}header p{max-width:920px;line-height:1.85;color:var(--muted);font-size:17px}
+a{color:var(--accent)}.controls{max-width:1480px;margin:auto;padding:28px 36px 20px;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+input,select{background:#22242b;color:var(--ink);border:1px solid #58565a;padding:15px 17px;border-radius:0;font-size:16px}
+input{min-width:260px;flex:1}select{min-width:260px}
+.stats{font:800 14px Consolas,monospace;color:var(--accent)}
+main{max-width:1480px;margin:auto;padding:0 36px 100px}
+.table-scroller{overflow:auto;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:1180px;font-size:15px}
+thead{position:sticky;top:0;background:#2c2d35;color:#f7e7de;z-index:1}
+th{text-align:left;padding:18px 14px;white-space:nowrap;border-bottom:2px solid var(--accent)}
+td{padding:17px 14px;line-height:1.65;vertical-align:top;border-bottom:1px solid var(--line)}tbody tr:nth-child(even){background:#191b20}
+tbody tr:hover{background:#24242b}.code{font:800 14px Consolas,monospace;color:var(--accent);white-space:nowrap}
+.chapter{font-weight:800;color:#c9bcdf;white-space:nowrap}.detail{max-width:540px}.muted{color:var(--muted)}
+mark{background:#69412c;color:#fff}
+footer{max-width:1480px;margin:auto;padding:30px 36px 90px;color:var(--muted);font-size:13px;line-height:1.8}
+@media print{body{background:white;color:black}input,select,.controls{display:none!important}table{min-width:0;font-size:10px}.table-scroller{overflow:visible}.chapter{color:black}.code{color:black}td{padding:6px}}
+</style>
+</head>
+<body><header><small>V5.0 · INDIVIDUAL ART DIRECTION / 175 SLIDES</small><h1>逐页美术修改台账</h1>
+<p>依托现行 23 课 / 175 页课程数据，以及逐页独立编制的设计清单。本表展示每一页的<strong>真实标题、构图、配色、图形母题及具体修改内容</strong>。课程理论正文保持不变。本表是设计实施记录，不替代浏览器截图的视觉验收。</p>
+<p><a href="./index.html">← 打开正式课件</a>　·　<a href="./V5-PAGE-CHANGELOG.md">查看 Markdown 版记录</a></p></header>
+<section class="controls" aria-label="报告过滤器"><input id="q" type="search" placeholder="搜索页号、标题、设计描述、图形母题" aria-label="搜索"><select id="chapter" aria-label="章节"><option value="">全部 23 课</option></select><span class="stats" id="stats">载入数据中…</span></section>
+<main><div class="table-scroller"><table><thead><tr><th>总页码</th><th>页面 ID</th><th>课程</th><th>真实页面标题</th><th>构图</th><th>底色 / 强调色</th><th>本页具体修改</th><th>图形母题</th></tr></thead><tbody id="rows"><tr><td colspan="8">读取课程数据中…</td></tr></tbody></table></div></main>
+<footer>设计颜色为语义性编辑色板：深炭黑、石板灰、米白、暖纸色、陶粉橘、灰鼠尾草。页面内容和教学公式以正式课件为准；背景母题不应替代原书理论图示。</footer>
+<script src="data/v2-part-1.js"></script><script src="data/v2-part-2.js"></script><script src="data/v2-part-3.js"></script><script src="data/v2-part-4.js"></script><script src="v5-art-plan.js?v=20261008-1"></script>
+<script>
+(async()=>{
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const grams={cover:'章节海报',question:'主问题版式',thesis:'论点聚焦',contrast:'逻辑张力',compare:'双栏比较',diagram:'理论结构',illustration:'图示主导',warning:'误解纠偏',matrix:'并列网格',map:'知识拓扑',timeline:'时间刻度',process:'过程与回路',quote:'引文构图',summary:'总结索引',open:'开放转场',case:'案例档案',formula:'公式主视觉'};
+const colors={ink:'深炭黑／暖橙',slate:'石板灰／柔橙',paper:'米白／深赭',cream:'暖纸色／赤陶',clay:'陶粉橘／深褐',sage:'灰鼠尾草／暖褐'};
+try{
+ if(!window.DecompressionStream)throw Error('需要新版浏览器支持 DecompressionStream');
+ const raw=atob(window.__V2_PARTS__.join('')),buf=Uint8Array.from(raw,c=>c.charCodeAt(0));
+ const stream=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));
+ const script=await new Response(stream).text();
+ window.__V2_COURSES__=[];window.addV2Course=c=>window.__V2_COURSES__.push(c);
+ (0,eval)(script);
+ let all=[],counter=0;
+ for(const c of window.__V2_COURSES__){
+  const designs=window.V5_ART_PLANS[c.id];
+  if(!designs||designs.length!==c.slides.length)throw Error('课程 '+c.id+' 页数与美术记录不符');
+  document.querySelector('#chapter').insertAdjacentHTML('beforeend','<option value="'+esc(c.id)+'">C'+esc(c.id)+' · '+esc(c.title)+'</option>');
+  c.slides.forEach((s,i)=>{
+   const p=designs[i];counter++;all.push({n:counter,id:c.id+'-'+String(i+1).padStart(2,'0'),course:c.title,courseId:c.id,title:s.t,grammar:grams[p.grammar]||p.grammar,color:colors[p.tone]||p.tone,detail:p.detail,motif:p.motif});
+  });
+ }
+ if(all.length!==175)throw Error('应该是175页，实际为'+all.length);
+ const render=()=>{
+  const q=document.querySelector('#q').value.trim().toLocaleLowerCase(),chapter=document.querySelector('#chapter').value;
+  const visible=all.filter(s=>(!chapter||s.courseId===chapter)&&(!q||Object.values(s).join(' ').toLocaleLowerCase().includes(q)));
+  document.querySelector('#rows').innerHTML=visible.map(s=>'<tr><td class="code">'+String(s.n).padStart(3,'0')+'</td><td class="code">'+esc(s.id)+'</td><td class="chapter">'+esc(s.course)+'</td><td>'+esc(s.title)+'</td><td>'+esc(s.grammar)+'</td><td class="muted">'+esc(s.color)+'</td><td class="detail">'+esc(s.detail)+'</td><td class="code">'+esc(s.motif)+'</td></tr>').join('')||'<tr><td colspan="8">没有匹配的页面。</td></tr>';
+  document.querySelector('#stats').textContent=visible.length+' / 175 PAGES';
+ };
+ document.querySelector('#q').addEventListener('input',render);document.querySelector('#chapter').addEventListener('change',render);render();
+}catch(err){document.querySelector('#rows').innerHTML='<tr><td colspan="8">加载失败：'+esc(String(err))+'</td></tr>';document.querySelector('#stats').textContent='LOAD ERROR';}
+})();
+</script></body></html>
