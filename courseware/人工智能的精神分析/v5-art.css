@@ -175,3 +175,62 @@
 @media(prefers-reduced-motion:reduce){
  .slide-shell.v5-designed *{animation:none!important;transition:none!important}
 }
+
+
+/* V5 visual QA fixes: first Chromium sweep of 175 slides.
+ * Remove the legacy off-stage "COURSE" pseudo-watermark on all 23 covers.
+ * That decoration made scrollHeight falsely report 73px of overflow and
+ * forced the runtime auto-fitter to shrink the chapter headings to 46px. */
+.slide-shell.v5-designed.v5-cover .slide-body::after{display:none!important}
+/* C15-15: four full discourse diagrams must coexist with the two comparison notes.
+ * Use a genuine two-zone editorial layout instead of stacking everything vertically. */
+.slide-shell.v5-designed[data-v5-id="15-15"] .slide-body{
+ display:grid!important;grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr)!important;
+ grid-template-rows:auto minmax(0,1fr)!important;align-items:start;column-gap:20px!important;
+}
+.slide-shell.v5-designed[data-v5-id="15-15"] .slide-title{
+ grid-column:1/-1!important;font-size:60px!important;margin:0 0 12px!important
+}
+.slide-shell.v5-designed[data-v5-id="15-15"] .formula.v4-formula{
+ grid-column:1!important;grid-row:2!important;margin:0!important;width:100%;align-self:start
+}
+.slide-shell.v5-designed[data-v5-id="15-15"] .point-list{
+ grid-column:2!important;grid-row:2!important;
+ display:grid!important;grid-template-columns:1fr!important;
+ align-self:center;gap:17px!important;margin:0!important
+}
+.slide-shell.v5-designed[data-v5-id="15-15"] .point{
+ font-size:23px!important;line-height:1.39!important;
+ padding:13px 14px!important;border-top-width:3px!important
+}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-diagram{padding:12px 15px!important}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-discourse{padding:8px 13px!important}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-discourse h3{font-size:18px!important;margin-bottom:4px!important}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-four div{font-size:32px!important;min-height:56px!important}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-four small{font-size:11px!important}
+.slide-shell.v5-designed[data-v5-id="15-15"] .v4-discourse p{font-size:11px!important;margin:4px 0 0!important}
+/* C23-10: avoid vertically centering a combined summary plus a full-size diagram,
+ * which moved the title and first point off the top of the stage. */
+.slide-shell.v5-designed[data-v5-id="23-10"] .slide-body{
+ display:grid!important;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)!important;
+ grid-template-rows:auto minmax(0,1fr)!important;column-gap:35px!important;
+ align-items:start;justify-content:initial!important;padding:0!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .slide-title{
+ grid-column:1/-1!important;font-size:67px!important;margin:0 0 22px!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .point-list{
+ grid-column:1!important;grid-row:2!important;align-self:center;
+ display:grid!important;grid-template-columns:1fr!important;
+ gap:15px!important;max-width:none!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .point{
+ font-size:26px!important;line-height:1.44!important;padding:12px 15px!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v4-inset{
+ grid-column:2!important;grid-row:2!important;align-self:center;
+ max-width:100%!important;margin:0!important;min-width:0!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol{min-height:345px!important;padding:24px 15px!important}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol p{font-size:32px!important;line-height:1.38;margin:18px 0!important}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol small{font-size:16px!important}
