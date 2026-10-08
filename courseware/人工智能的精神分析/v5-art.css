@@ -1,0 +1,177 @@
+/* V5 · 175 PAGE EDITORIAL ART SYSTEM · loaded after V3 and V4
+   Each slide receives individually curated genre, tone and vector motif.
+   Visuals are decorative; math/technical diagrams from V3/V4 remain intact. */
+.slide-shell.v5-designed{
+  background:var(--v5-bg)!important;color:var(--v5-ink)!important;
+  --orange:var(--v5-accent);--purple:var(--v5-aux);
+  isolation:isolate;
+}
+.slide-shell.v5-designed .slide-header,
+.slide-shell.v5-designed .slide-body,
+.slide-shell.v5-designed .slide-footer{position:relative;z-index:3}
+.slide-shell.v5-designed .slide-course{color:var(--v5-accent)!important;font-size:14px;letter-spacing:.16em}
+.slide-shell.v5-designed .slide-course:before{width:46px;height:5px}
+.slide-shell.v5-designed .slide-type{color:var(--v5-muted)!important;font-size:12px;letter-spacing:.075em;font-weight:700}
+.slide-shell.v5-designed .slide-title{
+  font-family:"Microsoft YaHei UI","PingFang SC","Noto Sans CJK SC",sans-serif;
+  font-size:var(--v5-title-size)!important;letter-spacing:-.045em;
+  font-weight:850;line-height:1.10;color:var(--v5-ink)!important;
+  max-width:1360px;text-wrap:balance;
+}
+.slide-shell.v5-designed .slide-deck{color:var(--v5-muted)!important}
+.slide-shell.v5-designed .source,.slide-shell.v5-designed .page-code{color:var(--v5-muted)!important}
+.slide-shell.v5-designed .source{font-size:14px}
+.slide-shell.v5-designed .page-code{font-size:17px;letter-spacing:.14em}
+.slide-shell.v5-designed .v3-point-text{color:var(--v5-ink)!important}
+.slide-shell.v5-designed .point{
+  background:rgba(128,128,128,.065)!important;
+  border-color:var(--v5-accent)!important;
+  box-shadow:none!important;
+  color:var(--v5-ink);
+  font-size:26px;line-height:1.48;
+  overflow-wrap:anywhere;
+}
+.slide-shell.v5-designed .v3-point-badge{font-size:12px;border-radius:0;min-height:29px}
+.slide-shell.v5-designed .v3-badge-book{color:var(--v5-accent)!important}
+.slide-shell.v5-designed .v3-badge-explain{color:var(--v5-aux)!important}
+.slide-shell.v5-designed .v3-badge-extension{color:#82A260!important}
+.slide-shell.v5-designed .term{color:var(--v5-muted)!important}
+.slide-shell.v5-designed .ornament{opacity:.055!important}
+.slide-shell.v5-designed .v5-art-motif{
+  position:absolute;right:85px;top:160px;width:520px;height:500px;
+  color:var(--v5-accent);opacity:.16;pointer-events:none;z-index:1;
+  transform:rotate(-8deg);
+}
+.slide-shell.v5-designed .v5-art-motif svg{display:block;width:100%;height:100%}
+.slide-shell.v5-designed.v5-illustration .v5-art-motif,
+.slide-shell.v5-designed.v5-formula .v5-art-motif{opacity:.065;right:30px}
+.slide-shell.v5-designed.v5-tone-ink .v5-art-motif,
+.slide-shell.v5-designed.v5-tone-slate .v5-art-motif{opacity:.20}
+.slide-shell.v5-designed .v5-folio{
+ position:absolute;right:20px;top:46%;writing-mode:vertical-rl;
+ color:var(--v5-accent);font:700 12px Consolas,monospace;
+ letter-spacing:.22em;opacity:.70;pointer-events:none;z-index:4;
+}
+.slide-shell.v5-designed .v5-intent{
+ position:absolute;right:46px;top:48%;writing-mode:vertical-rl;
+ color:var(--v5-muted);font:700 10px Consolas,monospace;
+ letter-spacing:.08em;opacity:.62;pointer-events:none;z-index:4;
+}
+/* Distinct composition grammars */
+.slide-shell.v5-designed.v5-cover{padding:70px 86px 60px 86px}
+.slide-shell.v5-designed.v5-cover .slide-title{
+ font-size:var(--v5-title-size)!important;max-width:1110px!important;
+ line-height:1.02;margin-bottom:38px;
+}
+.slide-shell.v5-designed.v5-cover .slide-body{padding-right:230px!important}
+.slide-shell.v5-designed.v5-cover .chapter-hook{font-size:31px;max-width:890px;color:var(--v5-muted)!important}
+.slide-shell.v5-designed.v5-cover .chapter-code{color:var(--v5-accent)!important}
+.slide-shell.v5-designed.v5-cover .chapter-poster-number{color:var(--v5-stroke)!important;font-size:240px}
+.slide-shell.v5-designed.v5-cover .chapter-stripe{opacity:.2!important}
+.slide-shell.v5-designed.v5-cover .v5-art-motif{width:620px;height:580px;top:150px;right:50px;opacity:.28}
+.slide-shell.v5-designed.v5-question .slide-title,
+.slide-shell.v5-designed.v5-open .slide-title{max-width:1290px}
+.slide-shell.v5-designed.v5-question .point-list{max-width:1120px!important;gap:18px!important}
+.slide-shell.v5-designed.v5-question .point{font-size:27px;padding:17px 24px!important;border-left-width:6px!important}
+.slide-shell.v5-designed.v5-open .slide-body{display:flex!important;flex-direction:column;justify-content:center;min-height:0;padding-right:160px}
+.slide-shell.v5-designed.v5-open .point-list{max-width:1200px!important}
+.slide-shell.v5-designed.v5-open .point{font-size:31px!important;line-height:1.5!important;background:transparent!important;border-left:0!important;padding-left:0!important}
+.slide-shell.v5-designed.v5-open .v5-art-motif{opacity:.33;transform:rotate(12deg)}
+.slide-shell.v5-designed.v5-thesis .slide-title{max-width:1330px}
+.slide-shell.v5-designed.v5-thesis .point-list{max-width:1160px!important;grid-template-columns:1fr!important;gap:20px!important}
+.slide-shell.v5-designed.v5-thesis .point:first-child{font-size:29px!important;font-weight:580;background:transparent!important;border-left-width:6px!important}
+.slide-shell.v5-designed.v5-thesis .point:last-child{opacity:.94}
+.slide-shell.v5-designed.v5-quote .slide-title{
+ font-family:"Noto Serif CJK SC","Songti SC","SimSun",serif!important;
+ font-weight:750;font-size:var(--v5-title-size)!important;max-width:1310px
+}
+.slide-shell.v5-designed.v5-quote .slide-title:before{color:var(--v5-accent)!important}
+.slide-shell.v5-designed.v5-quote .point-list{max-width:1030px!important}
+.slide-shell.v5-designed.v5-quote .point{background:transparent!important;border-left:0!important;font-size:28px!important}
+.slide-shell.v5-designed.v5-compare .point-list,
+.slide-shell.v5-designed.v5-contrast .point-list{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ max-width:none!important;gap:22px!important;align-items:stretch
+}
+.slide-shell.v5-designed.v5-compare .point,
+.slide-shell.v5-designed.v5-contrast .point{
+ border-left:0!important;border-top:5px solid var(--v5-accent)!important;
+ padding:27px!important;background:rgba(128,128,128,.09)!important
+}
+.slide-shell.v5-designed.v5-matrix .point-list{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ max-width:none!important;gap:18px!important
+}
+.slide-shell.v5-designed.v5-matrix .point{
+ border:1px solid var(--v5-stroke)!important;
+ border-top:5px solid var(--v5-accent)!important;
+ padding:22px!important;min-height:128px;background:rgba(128,128,128,.06)!important
+}
+.slide-shell.v5-designed.v5-matrix:has(.point:nth-child(3):last-child) .point-list{
+ grid-template-columns:repeat(3,minmax(0,1fr))!important
+}
+.slide-shell.v5-designed.v5-matrix:has(.point:nth-child(4):last-child) .point-list{
+ grid-template-columns:repeat(2,minmax(0,1fr))!important
+}
+.slide-shell.v5-designed.v5-timeline .point-list,
+.slide-shell.v5-designed.v5-process .point-list{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ border-top:2px solid var(--v5-accent)!important;
+ padding-top:20px!important;gap:22px!important;max-width:1340px!important
+}
+.slide-shell.v5-designed.v5-timeline .point,
+.slide-shell.v5-designed.v5-process .point{
+ border:0!important;border-top:5px solid var(--v5-accent)!important;
+ padding:22px 20px!important;background:rgba(128,128,128,.06)!important
+}
+.slide-shell.v5-designed.v5-timeline .point:first-child:before,
+.slide-shell.v5-designed.v5-process .point:first-child:before{color:var(--v5-accent)}
+.slide-shell.v5-designed.v5-summary .point-list{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:20px!important;max-width:none!important
+}
+.slide-shell.v5-designed.v5-summary .point{border-left:0!important;border-top:5px solid var(--v5-accent)!important;padding:23px!important;min-height:115px!important}
+.slide-shell.v5-designed.v5-summary:has(.point:nth-child(3):last-child) .point-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.slide-shell.v5-designed.v5-map .point-list{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:20px!important;max-width:1380px!important
+}
+.slide-shell.v5-designed.v5-map .point{border-top:5px solid var(--v5-accent)!important;border-left:0!important;padding:23px!important}
+.slide-shell.v5-designed.v5-warning .slide-title{
+ border-left:13px solid var(--v5-accent);
+ padding-left:28px;max-width:1350px
+}
+.slide-shell.v5-designed.v5-warning .point-list{max-width:1200px!important;grid-template-columns:1fr!important}
+.slide-shell.v5-designed.v5-warning .point{border-left:0!important;border-top:4px solid var(--v5-aux)!important;background:rgba(255,255,255,.15)!important}
+.slide-shell.v5-designed.v5-case .slide-title{font-family:"Noto Serif CJK SC","Songti SC","SimSun",serif!important;max-width:1340px}
+.slide-shell.v5-designed.v5-case .point-list{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ max-width:none!important;gap:22px!important
+}
+.slide-shell.v5-designed.v5-case .point{
+ background:rgba(128,128,128,.08)!important;
+ border:1px solid var(--v5-stroke)!important;
+ padding:55px 22px 24px!important;min-height:170px
+}
+.slide-shell.v5-designed.v5-case .case-kicker{color:var(--v5-accent)!important}
+.slide-shell.v5-designed.v5-diagram .point-list{max-width:1110px!important}
+.slide-shell.v5-designed.v5-illustration .slide-title{max-width:1340px}
+.slide-shell.v5-designed.v5-illustration .point-list{max-width:1100px!important}
+.slide-shell.v5-designed.v5-formula .slide-title{max-width:1350px}
+.slide-shell.v5-designed.v5-formula .v4-diagram{box-shadow:none;border-left-width:5px}
+.slide-shell.v5-designed.v5-formula .point{font-size:23px!important}
+.slide-shell.v5-designed.v5-formula .v4-formula-host{max-width:1370px!important}
+.slide-shell.v5-designed .v4-symbol{padding-top:34px;padding-bottom:34px}
+.slide-shell.v5-designed .fine-visual,
+.slide-shell.v5-designed .v3-visual,
+.slide-shell.v5-designed .mvp-visual{position:relative;z-index:3}
+/* Dense copy should not overflow solely to preserve decorations */
+.slide-shell.v5-designed.mvp-compact .slide-title{font-size:min(var(--v5-title-size),54px)!important}
+.slide-shell.v5-designed.mvp-very-compact .slide-title{font-size:min(var(--v5-title-size),46px)!important}
+.slide-shell.v5-designed.mvp-compact .point{font-size:23px!important}
+.slide-shell.v5-designed.mvp-very-compact .point{font-size:22px!important}
+/* Presentation controls remain legible; stage never steals pointer events */
+.v5-art-motif,.v5-folio,.v5-intent{user-select:none}
+@media(prefers-reduced-motion:reduce){
+ .slide-shell.v5-designed *{animation:none!important;transition:none!important}
+}
