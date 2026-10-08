@@ -55,7 +55,7 @@
   }
 
   function injectMeaningfulVisual(article,title){
-    if(article.querySelector('.v3-visual,.mvp-visual'))return;
+    if(article.querySelector('.v3-visual,.mvp-visual,.fine-visual,.v4-inset'))return;
     if(article.classList.contains('layout-chapter')||article.classList.contains('layout-case')||article.classList.contains('layout-formula-step'))return;
 
     let html='';
@@ -82,7 +82,7 @@
   function meaningfulVisual(article){
     const visual=article.querySelector('.v3-visual,.mvp-visual');
     if(!visual)return null;
-    if(!visual.querySelector('svg,.v3-discourse-rotator')){
+    if(!visual.querySelector('svg,.v3-discourse-rotator,.v4-diagram')){
       visual.remove();
       return null;
     }

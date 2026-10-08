@@ -44,10 +44,13 @@
   function automatonTuche(){return `<svg viewBox="0 0 560 430">${arrow('at')}<rect x="40" y="80" width="215" height="270" rx="8" class="f-node"/><rect x="305" y="80" width="215" height="270" rx="8" fill="rgba(103,86,168,.08)" stroke="var(--purple)" stroke-width="2"/><text x="148" y="125" text-anchor="middle" class="f-label">automaton</text><text x="413" y="125" text-anchor="middle" class="f-label">tuché</text><path d="M90 180 C120 150 150 210 180 180 S235 210 205 250 S120 285 88 245" class="f-line" marker-end="url(#at)"/><path d="M350 270 C375 170 420 150 472 210" class="f-soft"/><circle cx="472" cy="210" r="12" fill="var(--fine-accent)"/><text x="148" y="316" text-anchor="middle" class="f-small">符号链的自动重复</text><text x="413" y="316" text-anchor="middle" class="f-small">无法预先保证的遭遇</text></svg>`}
   function blindspot(){return `<svg viewBox="0 0 560 430"><circle cx="280" cy="215" r="150" fill="rgba(216,107,69,.05)" stroke="var(--fine-accent)" stroke-width="2"/><path d="M160 130 Q280 60 400 130 Q280 300 160 130 Z" fill="rgba(103,86,168,.08)" stroke="var(--purple)" stroke-width="2"/><circle cx="280" cy="155" r="42" fill="none" stroke="var(--fine-accent)" stroke-width="4"/><path d="M280 113 A42 42 0 0 1 317 175" stroke="#12141a" stroke-width="9" fill="none"/><text x="280" y="310" text-anchor="middle" class="f-label">盲点</text><text x="280" y="344" text-anchor="middle" class="f-small">不一定只是待修复漏洞</text><text x="280" y="398" text-anchor="middle" class="f-small">系统的可见范围本身由结构规定</text></svg>`}
 
+  // Current V3.3 counts: C03=5, C04=6, C05=8.
   const visuals={
-    '03-04':outsideInside,'03-05':bigOther,'03-06':bodyAI,
-    '04-02':errorLoop,'04-03':socialFailure,'04-04':obedience,'04-05':turingMask,'04-06':crackSubject,
-    '05-02':boundaryGap,'05-03':omega,'05-04':zero,'05-05':suture,'05-07':automatonTuche,'05-08':blindspot
+    '03-04':outsideInside,'03-05':bigOther,
+    '04-02':errorLoop,'04-03':socialFailure,'04-04':obedience,
+    '04-05':turingMask,'04-06':crackSubject,
+    '05-02':boundaryGap,'05-03':omega,'05-04':zero,
+    '05-05':suture,'05-07':automatonTuche,'05-08':blindspot
   };
   const dark=new Set(['03-01','03-04','03-06','03-08','04-01','04-03','04-05','04-08','05-01','05-03','05-05','05-07','05-09']);
   const warm=new Set(['04-04','04-07']);
@@ -57,14 +60,14 @@
     const s=now();const article=stage.querySelector('.slide-shell');
     if(!s||!article||!['03','04','05'].includes(String(s.courseId)))return;
     const c=String(s.courseId),i=String(s.localIndex).padStart(2,'0'),key=`${c}-${i}`;
-    const needsMoebius=key==='03-02'&&!article.querySelector('.fine-visual');
+    const needsMoebius=key==='03-03'&&!article.querySelector('.fine-visual');
     if(article.dataset.fineKey===key&&!needsMoebius)return;
     article.dataset.fineKey=key;
     article.classList.add('fine-course',`fine-c${c}-s${i}`,`fine-count-${article.querySelectorAll('.point').length}`);
     if(dark.has(key))article.classList.add('fine-dark');else if(warm.has(key))article.classList.add('fine-warm');else article.classList.add('fine-paper');
     if(summaries.has(key))article.classList.add('fine-summary');
     addKicker(article,palette[c]);
-    if(key==='03-02'){
+    if(key==='03-03'){
       const existing=article.querySelector('.v3-visual');
       if(existing){existing.classList.add('fine-visual');article.querySelector('.slide-body')?.classList.add('fine-visual-layout');article.querySelector('.v3-copy')?.classList.add('fine-copy')}
     }
