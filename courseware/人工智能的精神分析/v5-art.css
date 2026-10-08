@@ -234,3 +234,28 @@
 .slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol{min-height:345px!important;padding:24px 15px!important}
 .slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol p{font-size:32px!important;line-height:1.38;margin:18px 0!important}
 .slide-shell.v5-designed[data-v5-id="23-10"] .v4-symbol small{font-size:16px!important}
+
+
+/* C23-10 second visual QA pass: V3's original snake↔David illustration
+ * and V4's additional explanation card were both visible, duplicating the
+ * closure graphic and producing 71px genuine overflow. Retain the older
+ * vector drawing and suppress only the redundant V4 summary inset. */
+.slide-shell.v5-designed[data-v5-id="23-10"] .v4-inset{display:none!important}
+.slide-shell.v5-designed[data-v5-id="23-10"] .slide-body{
+ display:grid!important;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr)!important;
+ grid-template-rows:1fr!important;gap:28px!important;align-items:center!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v3-copy{
+ min-width:0;max-width:none!important;align-self:center;grid-column:1!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v3-copy .slide-title{
+ font-size:60px!important;line-height:1.13!important;margin:0 0 25px!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v3-copy .point-list{
+ display:grid!important;grid-template-columns:1fr!important;
+ gap:14px!important;width:100%!important
+}
+.slide-shell.v5-designed[data-v5-id="23-10"] .v3-visual{
+ grid-column:2!important;align-self:center;min-width:0;
+ padding-left:15px!important;width:100%
+}
