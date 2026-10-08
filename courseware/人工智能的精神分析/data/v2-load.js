@@ -31,6 +31,13 @@
         return {id:`c${c.id}-s${String(i+1).padStart(2,'0')}`,globalIndex:gi++,courseId:c.id,localIndex:i+1,localTotal:total,title:s.t,goal:s.g,label,authority,source:s.src||c.source,layout:s.l||'statement',points,terms:[s.t,...c.terms].slice(0,5),formula:s.formula||'',cue:s.g,pitfall:s.pit||c.pitfall,bridge:next?`下一页只继续一个问题：“${next}”。`:`本课在这里停下；回到课程目录进入下一课。`,speakerNotes:note};
       })};
     });
+    await new Promise((resolve,reject)=>{
+      const addon=document.createElement('script');
+      addon.src='v4-teaching.js?v=20261008';
+      addon.onload=resolve;
+      addon.onerror=()=>reject(new Error('V4 教学组件未能加载'));
+      document.body.appendChild(addon);
+    });
     delete window.__V2_PARTS__; delete window.__V2_COURSES__; delete window.addV2Course;
     const script=document.createElement('script');
     script.src='../../engine/lecture-engine.js';

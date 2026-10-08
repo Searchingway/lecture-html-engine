@@ -1,0 +1,35 @@
+/* V4: layout priority, legible conceptual diagrams, restrained editorial design */
+.mvp-reviewed.mvp-layout-pair .point-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.mvp-reviewed.mvp-layout-grid3 .point-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.mvp-reviewed.mvp-layout-grid4 .point-list{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.mvp-reviewed.mvp-layout-stack .point-list{grid-template-columns:1fr!important}
+.v4-curated .formula.v4-formula{display:block;width:100%;max-width:1360px;padding:0;margin:4px 0 20px;box-shadow:none;border:0;white-space:normal;font-family:inherit;font-weight:400}
+.v4-diagram{background:#181a20;color:#f2eee6;border-left:6px solid #d86b45;padding:20px 26px;box-shadow:8px 8px 0 rgba(103,86,168,.18);line-height:1.35;font-size:23px}
+.v4-diagram header{font:800 18px Consolas,monospace;letter-spacing:.06em;color:#e58a68;display:flex;justify-content:space-between;gap:16px}
+.v4-diagram header small{font:600 15px sans-serif;color:#c6bec2;letter-spacing:0}
+.v4-diagram footer{font-size:15px;color:#c6beb4;margin-top:16px}
+.v4-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px}
+.v4-columns section{padding:18px;border:1px solid #53525b}
+.v4-columns h3,.v4-discourse h3{font-size:22px;margin:0 0 14px}
+.v4-rule{border-left:4px solid #575363;padding:12px 14px;opacity:.6;display:flex;align-items:center;gap:14px}
+.v4-rule+.v4-rule{margin-top:8px}
+.v4-rule.v4-highlight{opacity:1;background:#2e292d;border-left-color:#e58a68}
+.v4-rule span{font:500 38px "Cambria Math","Times New Roman",serif;white-space:nowrap}
+.v4-rule small{font:500 17px sans-serif;color:#dfd9cd}
+.v4-discourses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}
+.v4-discourses:has(.v4-discourse:only-child){grid-template-columns:1fr}
+.v4-discourse{border:1px solid #53525b;padding:15px 24px}
+.v4-discourse h3{color:#f1a98a}
+.v4-four{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.v4-four div{font:500 44px "Cambria Math","Times New Roman",serif;min-height:73px;text-align:center}
+.v4-four div:nth-child(-n+2){border-bottom:3px solid #e58a68}
+.v4-four small{display:block;font:600 13px sans-serif;color:#b9a5e0}
+.v4-discourse p{font:500 15px sans-serif;text-align:center;color:#bbb4a9}
+.v4-inset{max-width:1200px;width:100%;margin-top:16px}
+.v4-symbol{text-align:center;padding:48px 20px;min-height:300px}
+.v4-symbol header{justify-content:center}
+.v4-symbol p{font-size:40px;margin:26px 0}
+.v4-symbol b{color:#e58a68}
+.v4-symbol small{font-size:19px;color:#c6beb4}
+.v4-curated .slide-type{font-size:13px}
+@media(prefers-reduced-motion:reduce){.v4-curated *{transition:none!important;animation:none!important}}
