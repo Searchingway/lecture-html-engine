@@ -1,0 +1,45 @@
+name: V5 Visual Audit (175 slides)
+on:
+  push:
+    branches:
+      - design/psychoanalysis-v5-175-slide-art-pass
+      - main
+    paths:
+      - 'courseware/人工智能的精神分析/**'
+      - 'engine/**'
+      - 'tools/v5-visual-audit.mjs'
+      - '.github/workflows/v5-visual-audit.yml'
+  pull_request:
+    paths:
+      - 'courseware/人工智能的精神分析/**'
+      - 'engine/**'
+      - 'tools/v5-visual-audit.mjs'
+jobs:
+  visual-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start static presentation server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/v5-http.log 2>&1 &
+          sleep 2
+      - name: Audit all slides and capture screenshots
+        run: node tools/v5-visual-audit.mjs
+      - name: Upload per-page screenshots and audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v5-visual-audit-175
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 10
